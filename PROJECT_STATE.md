@@ -62,6 +62,20 @@ The editorial process must be understood before it can be productized. Ten editi
 
 ---
 
+## Operating System Status
+
+**Version 1 — Frozen until Edition 010.**
+
+The operating system earns revisions through evidence from editions, not through discussion. Until Edition 010:
+
+- Do not add new framework documents
+- Do not add new principles or patterns without an edition demonstrating their absence
+- Do not expand theory
+
+The repository now grows primarily through editions, meetings, reviews, and deposits. If an edition clearly reveals something missing from the operating system, note it in the edition review and address it then.
+
+---
+
 ## Success Criteria for Editions 004–010
 
 By Edition 010, we should be able to answer:

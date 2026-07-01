@@ -1,66 +1,56 @@
 # Why Today?
 
-An editorial publication that transforms today's shared moments into timeless hidden questions.
+Every day contains a question hiding in plain sight.
 
-Every edition answers one question the reader didn't know to ask — and leaves them seeing something they already knew differently.
+*Why Today?* is an experiment in finding it.
 
-**The reader's test:** *"I never thought about it that way."*
+Each edition begins with something millions of people are already living through — a heat dome, a penalty shootout, a national birthday — and asks:
+
+> What is everyone looking at without actually seeing?
+
+The goal is not to explain today's news. The goal is to help readers notice something they already knew differently.
+
+The reader's test: *"I never thought about it that way."*
 
 ---
 
 ## Editions
 
-| # | Date | Shared Moment | Hidden Question |
-|---|------|--------------|-----------------|
-| [001](editions/001-july-4-wrong-date/) | July 1, 2026 | America's 250th birthday | Why is July 4th America's birthday if it isn't the date of anything decisive? |
-| [002](editions/002-heat-deaths/) | July 1, 2026 | Heat dome over the Pacific Northwest | What is the deadliest natural disaster in America? |
-| [003](editions/003-penalty-kicks/) | July 1, 2026 | World Cup penalty shootout | Why does everyone know the safest penalty kick — and why can't anyone take it? |
+| | | |
+|---|---|---|
+| [**No. 003**](https://bdavey619.github.io/why-today/editions/003/) | July 1, 2026 | Why does everyone know the safest penalty kick — and why can't anyone take it? |
+| [**No. 002**](https://bdavey619.github.io/why-today/editions/002/) | July 1, 2026 | What is the deadliest natural disaster in America? |
+| [**No. 001**](https://bdavey619.github.io/why-today/editions/001/) | June 30, 2026 | Why is July 4th America's birthday if it isn't the date of anything decisive? |
 
 ---
 
 ## How an Edition Is Made
 
-Every edition follows the same process:
+Every edition is accompanied by three documents that live alongside it in this repository:
 
-1. **Editorial meeting** — survey today's shared moments, generate hidden questions, choose one
-2. **Research** — find the surprising sentence; let the question evolve
-3. **Writing** — build the edition around the surprising sentence
-4. **Review** — document what changed, what almost happened, what was learned
+**The meeting** — the editorial conversation that selected the question: what was considered, what was rejected, and why the chosen question survived.
 
-Each edition folder contains:
-- `edition.html` — the published edition
-- `meeting.md` — the editorial meeting that produced it
-- `review.md` — the post-edition review
-- `deposit.md` — what was deposited into the knowledge base
+**The review** — a post-edition record written immediately after publishing: what changed during research, what the edition almost became, what felt discovered versus constructed.
+
+**The deposit** — what the edition added to the knowledge base: the object of attention, the concept it instantiated, the perceptual habit it trains, and the roads not taken.
+
+These documents are not supplementary. They are the publication's institutional memory.
 
 ---
 
-## Repository Structure
+## The Workshop
+
+The editorial process, operating system, and knowledge base live in:
 
 ```
-editions/          Each edition: HTML + meeting + review + deposit
-site/              Static site (deploys to bdavey.co/why-today)
-docs/              Editorial operating system
-knowledge/         Compounding knowledge base
-templates/         Meeting, review, deposit, and edition templates
+editions/        Editorial record for each edition (meeting, review, deposit)
+system/          The editorial operating system (algorithm, heuristics, patterns, failure modes)
+knowledge/       Concepts and objects that compound across editions
+templates/       Ready-to-use templates for each stage of production
 ```
 
-## Editorial Operating System
-
-The process is documented in [`docs/`](docs/):
-
-- [`EDITORIAL_PLAYBOOK.md`](docs/EDITORIAL_PLAYBOOK.md) — how to produce an edition, step by step
-- [`ALGORITHM.md`](docs/ALGORITHM.md) — the versioned selection and construction algorithms
-- [`HEURISTICS.md`](docs/HEURISTICS.md) — accumulated editorial rules
-- [`PATTERNS.md`](docs/PATTERNS.md) — recurring structures observed across editions
-- [`FAILURE_MODES.md`](docs/FAILURE_MODES.md) — named failure modes and how to avoid them
-- [`QUESTIONS.md`](docs/QUESTIONS.md) — what we still don't know
-- [`KNOWLEDGE_ARCHITECTURE.md`](docs/KNOWLEDGE_ARCHITECTURE.md) — how the knowledge base compounds
+The operating system is currently at Version 1 — frozen until Edition 010. It earns revisions through evidence, not discussion.
 
 ---
 
-## Current Status
-
-Phase 1 — Editorial Discovery. Producing Editions 004–010.
-
-See [`PROJECT_STATE.md`](PROJECT_STATE.md) for current focus, open questions, and success criteria.
+*A different question for today's conversation.*
