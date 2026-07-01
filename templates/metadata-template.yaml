@@ -1,0 +1,16 @@
+edition: [NUMBER]
+slug: [kebab-case-slug]
+published_at: "[YYYY-MM-DD]"
+timezone: America/Los_Angeles
+
+shared_moment: "[One sentence: what readers are already paying attention to today]"
+hidden_question: "[The question as it appears in the headline]"
+surprising_sentence: >
+  [The surprising sentence, verbatim from the edition.]
+
+emotional_register: [wonder / concern / delight / unease / other]
+carry_type: [memory / attention / behavior / conversation / other]
+perceptual_habit: "[The transferable way of seeing this edition trains]"
+
+concept: [kebab-case — matches knowledge/concepts/]
+object: [kebab-case — matches knowledge/objects/]

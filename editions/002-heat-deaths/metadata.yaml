@@ -1,0 +1,19 @@
+edition: 2
+slug: heat-deaths
+published_at: "2026-06-30"
+timezone: America/Los_Angeles
+
+shared_moment: "A heat dome over the Pacific Northwest — six consecutive nights forecast above the body's cooling threshold"
+hidden_question: "What is the deadliest natural disaster in America?"
+surprising_sentence: >
+  The CDC estimates roughly 1,200 Americans die of heat each year.
+  Researchers who match death records against heat event dates find numbers closer to 12,000.
+  The gap exists because heat deaths almost never appear on death certificates —
+  a heart that fails at 3 a.m. in a 95-degree apartment is recorded as heart failure.
+
+emotional_register: concern
+carry_type: attention
+perceptual_habit: "Look for the hidden variable when the obvious metric seems adequate — ask what everyone reports and what the mechanism actually is."
+
+concept: visibility-determines-response
+object: the-overnight-low-threshold
