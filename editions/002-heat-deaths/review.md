@@ -1,7 +1,7 @@
 # Edition Review — Edition 002
 
 **Edition:** What is the deadliest natural disaster in America?
-**Date:** July 1, 2026
+**Date:** June 30, 2026
 
 ---
 

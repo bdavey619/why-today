@@ -1,7 +1,7 @@
 # Edition Review — Edition 003
 
 **Edition:** Why does everyone know the safest penalty kick — and why can't anyone take it?
-**Date:** July 1, 2026
+**Date:** June 30, 2026
 
 ---
 

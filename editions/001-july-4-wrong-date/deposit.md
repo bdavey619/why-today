@@ -1,6 +1,7 @@
 ---
 edition: 001
 date: 2026-06-30
+published_at: "2026-06-30" # America/Los_Angeles — canonical publication date
 shared_moment: "America turns 250 in four days"
 shared_moment_type: national_holiday
 object: "the-date-on-the-declaration"

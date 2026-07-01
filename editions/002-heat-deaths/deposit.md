@@ -1,7 +1,8 @@
 # Knowledge Deposit — Edition 002
 
 **Edition:** What is the deadliest natural disaster in America?
-**Date:** July 1, 2026
+**Date:** June 30, 2026
+**Published:** 2026-06-30 (America/Los_Angeles)
 **Algorithm version:** 1.1
 
 ---

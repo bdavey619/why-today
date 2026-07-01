@@ -1,6 +1,6 @@
 # Editorial Meeting — Edition 003
 
-**Date:** July 1, 2026
+**Date:** June 30, 2026
 **Shared moment:** World Cup penalty shootout — Germany eliminated last night, America plays tonight
 
 ---

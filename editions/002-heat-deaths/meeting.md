@@ -1,6 +1,6 @@
 # Editorial Meeting — Edition 002
 
-**Date:** July 1, 2026
+**Date:** June 30, 2026
 **Shared moment:** Heat dome over the Pacific Northwest — record temperatures forecast for the next six days
 
 ---
