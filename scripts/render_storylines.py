@@ -84,16 +84,16 @@ def fmt_date(dt):
 def render_card(s):
     first = parse_dt(s["first_seen"])
     last = parse_dt(s["last_seen"])
-    freshness = f"First noticed {fmt_date(first)}"
+    freshness = fmt_date(first)
     if last.date() != first.date():
-        freshness += f" &middot; updated {fmt_date(last)}"
+        freshness += f"&ndash;{fmt_date(last)}"
     times = s.get("appearances", 1)
-    freshness += f" &middot; mentioned {times}&times;" if times > 1 else " &middot; new"
+    if times > 1:
+        freshness += f" &middot; {times}&times;"
 
     return f"""      <li class="storyline-item">
-        <p class="storyline-moment">{html.escape(s['moment'])}</p>
-        <p class="storyline-why">{html.escape(s['why_now'])}</p>
-        <p class="storyline-freshness">{freshness}</p>
+        <span class="storyline-main"><strong class="storyline-moment">{html.escape(s['moment'])}</strong> &mdash; {html.escape(s['why_now'])}</span>
+        <span class="storyline-freshness">{freshness}</span>
       </li>"""
 
 
