@@ -77,8 +77,19 @@ def prune_stale(data):
     return data
 
 
+def cap_history(data):
+    """Bound history growth in the data file itself, not just at render time."""
+    for s in data["storylines"]:
+        if s.get("history"):
+            s["history"] = s["history"][-5:]
+    return data
+
+
 def fmt_date(dt):
     return dt.strftime("%b %-d")
+
+
+MAX_HISTORY = 5
 
 
 def render_card(s):
@@ -91,9 +102,18 @@ def render_card(s):
     if times > 1:
         freshness += f" &middot; {times}&times;"
 
+    history = s.get("history", [])
+    freshness_attrs = ""
+    if history:
+        tooltip = "; ".join(
+            f"{parse_dt(h['date']).strftime('%b %-d')}: {h['note']}" for h in history[-MAX_HISTORY:]
+        )
+        freshness_attrs = f' title="{html.escape(tooltip)}"'
+        freshness += " &middot; evolving"
+
     return f"""      <li class="storyline-item">
         <span class="storyline-main"><strong class="storyline-moment">{html.escape(s['moment'])}</strong> &mdash; {html.escape(s['why_now'])}</span>
-        <span class="storyline-freshness">{freshness}</span>
+        <span class="storyline-freshness"{freshness_attrs}>{freshness}</span>
       </li>"""
 
 
@@ -175,6 +195,7 @@ def main():
     data = load_data()
     data = maybe_roll_over(data)
     data = prune_stale(data)
+    data = cap_history(data)
     DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
     DATA_PATH.write_text(json.dumps(data, indent=2) + "\n")
     OUTPUT_PATH.write_text(render_page(data))

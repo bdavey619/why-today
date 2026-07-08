@@ -151,9 +151,19 @@
       "category": "Sports",
       "moment": "Argentina's 3-2 comeback over Egypt",
       "why_now": "Down 2-0, Messi and Enzo Fern\u00e1ndez pulled off a stoppage-time World Cup win to reach the quarterfinals.",
-      "first_seen": "2026-07-08T19:45:00Z",
+      "first_seen": "2026-07-07T18:00:00Z",
       "last_seen": "2026-07-08T19:45:00Z",
-      "appearances": 1
+      "appearances": 2,
+      "history": [
+        {
+          "date": "2026-07-07T18:00:00Z",
+          "note": "Egypt leads Argentina 2-0 at halftime"
+        },
+        {
+          "date": "2026-07-08T19:45:00Z",
+          "note": "Argentina completes stoppage-time comeback, wins 3-2"
+        }
+      ]
     },
     {
       "id": "world-cup-round-of-16-concludes",
