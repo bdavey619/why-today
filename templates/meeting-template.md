@@ -7,7 +7,7 @@
 
 ## Step 1 — Survey
 
-*Approximately 20 shared moments. For each: the moment (one phrase) + why people are paying attention today.*
+*Approximately 20 shared moments from the past week. For each: the moment (one phrase) + why people have been paying attention.*
 
 | # | Shared Moment | Why Today |
 |---|--------------|-----------|

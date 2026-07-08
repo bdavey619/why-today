@@ -62,7 +62,9 @@ See QUESTIONS.md. The most critical:
 #### Step 1 — Survey
 Generate approximately 20 shared moments across diverse domains. For each:
 - State the shared moment
-- State why people are paying attention today
+- State why people have been paying attention this week
+
+*Operational note, not a version-ladder discovery: the survey window changed from "today" to "the past week" when publishing cadence moved from daily to weekly after Edition 008 (see `PROJECT_STATE.md`, "Publishing Cadence"). This was a capacity decision made directly by the editor, not a pattern earned through edition evidence — logged here for accuracy, not as a v1.x change.*
 
 Do not editorialize yet. The survey is observational.
 
@@ -78,7 +80,7 @@ For each hidden question, produce:
 - Why it works
 - Why it might fail
 - Scores: Curiosity (1–10), Timeliness (1–10), Timelessness (1–10), Conversation (1–10)
-- Binary: "Would someone bring this up later today?" Yes / No
+- Binary: "Would someone bring this up in conversation this week?" Yes / No
 
 Trust the binary more than the scores.
 
@@ -125,7 +127,7 @@ Write the surprising sentence before anything else. Everything else in the editi
 Determine the edition's structure based on what the content wants to become.
 
 *v1.0 default structure (depart from this when the content demands it):*
-1. The Moment — one or two sentences orienting the reader in today
+1. The Moment — one or two sentences orienting the reader in this week's shared moment
 2. The Question — stated directly as the headline
 3. The Surprising Sentence — displayed with visual distinction; the thesis
 4. The Body — evidence organized by what the content wants to become

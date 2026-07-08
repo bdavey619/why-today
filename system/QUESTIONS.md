@@ -62,6 +62,8 @@ Great publications usually have a distinctive voice. But a publication whose top
 **Can this publication work daily?**
 The editorial meeting for Edition 001 required significant time and genuine intellectual effort. At what frequency can we produce editions of this quality without degrading? This can only be answered by producing more editions and measuring what happens to quality over time.
 
+*Answered, after Edition 008: no — not at this level of editorial review. Cadence moved to weekly for reasons of review capacity, not editorial quality per se. See `PROJECT_STATE.md`, "Publishing Cadence." Open sub-question this raises: does weekly review capacity, once it's the new baseline, eventually face the same ceiling — and if so, at what edition count should we expect to find out?*
+
 **What topics consistently fail to produce strong editions?**
 We have hypotheses (tragedies, live political crises, specialist topics) but no data. This will become clear through accumulated failure as much as through accumulated success.
 
