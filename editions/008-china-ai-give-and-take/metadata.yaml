@@ -1,0 +1,27 @@
+edition: 008
+slug: china-ai-give-and-take
+published_at: "2026-07-08"
+timezone: America/Los_Angeles
+
+shared_moment: "This week, Tencent gave away one of its most capable AI models for free, no restrictions attached. Reuters reports that behind closed doors, Beijing has spent the past month discussing whether the next one should be allowed to leave the country at all."
+
+hidden_question: "Why did China stop giving away the strategy that just won?"
+
+unresolved_opening: "On July 6, a Chinese company gave the world one of its best AI models for free. The next day, Reuters reported that China's government is discussing whether that should ever be allowed to happen again."
+
+surprising_sentence: "Tencent's Hy3 was released under the Apache 2.0 license on July 6, dropping the restriction its April preview had placed on the European Union, the United Kingdom, and South Korea. The next morning, Reuters reported that China's Ministry of Commerce had spent the past month privately meeting with Alibaba, ByteDance, and the startup Z.ai about whether future models this capable should be allowed to leave the country at all."
+
+emotional_register: wonder sharpening into unease
+carry_type: conversation
+perceptual_habit: "Trains readers to ask, of any strategy that looks like generosity: what does the strategy stop being generous about, and when does that switch flip?"
+
+human_voice: "Joel Spolsky, 'Strategy Letter V,' 2002: 'Smart companies try to commoditize their products' complements.' Not a reaction to this week's news — the actual origin of the strategic logic this edition argues China is running at national scale."
+
+visual: "Vertical timeline, five dated markers from DeepSeek R1 (Jan 2025) through Hy3's restriction-free release (Jul 6, 2026) to the Reuters report (Jul 7, 2026). First four markers share one color (opening); the fifth breaks the pattern with the accent color — the visual argument lands before the reader finishes the caption."
+
+one_more_thing: "Alibaba's Qwen — a separate Chinese lab entirely — crossed 1 billion cumulative Hugging Face downloads by March 2026, faster than any open-weight model family in history. Nobody is discussing restricting that one. Yet."
+
+concept: openness-is-a-phase-not-a-value
+object: tencent-hy3-license-clause
+
+os_version: "1.0"

@@ -18,6 +18,7 @@ The reader's test: *"I never thought about it that way."*
 
 | | | |
 |---|---|---|
+| [**No. 008**](https://bdavey619.github.io/why-today/editions/008/) | July 8, 2026 | Why did China stop giving away the strategy that just won? |
 | [**No. 003**](https://bdavey619.github.io/why-today/editions/003/) | July 1, 2026 | Why does everyone know the safest penalty kick — and why can't anyone take it? |
 | [**No. 002**](https://bdavey619.github.io/why-today/editions/002/) | July 1, 2026 | What is the deadliest natural disaster in America? |
 | [**No. 001**](https://bdavey619.github.io/why-today/editions/001/) | June 30, 2026 | Why is July 4th America's birthday if it isn't the date of anything decisive? |
