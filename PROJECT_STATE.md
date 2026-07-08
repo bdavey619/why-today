@@ -1,6 +1,6 @@
 # Project State
 
-*Last updated: July 1, 2026 — after Edition 003*
+*Last updated: July 8, 2026 — after Edition 008*
 
 ---
 
@@ -101,7 +101,13 @@ For the next five editions: bug fixes only. No new principles unless a genuine f
 
 **A surprising sentence can produce either understanding or curiosity.** Why Today? appears strongest when the sentence produces curiosity — when the reader immediately wants to know more rather than simply feeling informed. A sentence that resolves itself teaches. A sentence that creates instability discovers. *First noticed when comparing the birthright citizenship sentence against the Tour de France sentence at Edition 006 Checkpoint 1.*
 
-**The unresolved opening.** The block before the body has a clearer job than "revelation": it should be a sentence the reader cannot leave alone. Sometimes that's a paradox. Sometimes irony. Sometimes a compressed impossibility. The common property isn't the form — it's that the sentence cannot comfortably exist without the rest of the edition following it. A revelation tells the reader the answer before they've earned it. An unresolved opening creates forward motion instead. *First noticed when Edition 006's revelation block was replaced with "A closed newspaper has been leading the Tour de France for over a century." Watch editions 007–010: if every strong edition naturally begins with one of these, we've found something fundamental.*
+**The unresolved opening.** The block before the body has a clearer job than "revelation": it should be a sentence the reader cannot leave alone. Sometimes that's a paradox. Sometimes irony. Sometimes a compressed impossibility. The common property isn't the form — it's that the sentence cannot comfortably exist without the rest of the edition following it. A revelation tells the reader the answer before they've earned it. An unresolved opening creates forward motion instead. *First noticed when Edition 006's revelation block was replaced with "A closed newspaper has been leading the Tour de France for over a century." Watch editions 007–010: if every strong edition naturally begins with one of these, we've found something fundamental.* Edition 008 is a third instance (Tencent's license clause opening one day before the Reuters report) — trending toward confirmed.
+
+**A shared moment doesn't have to be a single event.** Editions 001–007 all opened from something with a clear starting gun: a holiday, a weather system, a match. Edition 008 opened from a pattern noticed across a week of trade reporting — no single event, just a trend and a coincidence in timing. It passed the nine-element check anyway. *First noticed at Edition 008's Step 1 survey. Watch whether trend-shaped shared moments can reliably support a full edition, or whether 008 got lucky because the trend happened to break sharply in the same week.*
+
+**A fourth-plus emotional register: wonder sharpening into unease.** Prior registers were wonder (001), concern/urgency (002), quiet delight (003), wonder sharpening into irony (006), wonder sharpening into something heavier (007). Edition 008 is the first where the unease is about a strategic actor's *intentions* rather than a physical, historical, or emotional fact. *First noticed at Edition 008. Watch whether "wonder sharpening into X" is becoming its own template — three instances in a row (006, 007, 008) risk becoming the new inherited structure the framework-leading trap warned about.*
+
+**Human voice from a foundational quote, not a contemporary reaction.** When no clean, on-record source is reacting to *this week's* news, a historical or theoretical quote the edition's argument is actually built on can stand in — Edition 006 (Christophe, 1919) and Edition 008 (Spolsky, 2002) both did this. *Two instances. If a third recurs, promote to a Candidate Pattern in `system/PATTERNS.md`.*
 
 ---
 
@@ -161,3 +167,4 @@ The operating system lives in [`docs/`](docs/). Templates live in [`templates/`]
 | 005 | — | — | — | Rejected at CP3; presidential papers — one discovery, not multiple |
 | 006 | 2026-07-01 | Wonder sharpening into irony | Conversation | First edition built with full OS; unresolved opening discovered |
 | 007 | 2026-07-05 | Wonder sharpening into something heavier | Conversation | Morocco/France; colonial history as squad list; first clean single-draft construction |
+| 008 | 2026-07-08 | Wonder sharpening into unease | Conversation | China AI open-source strategy; first shared moment sourced from a trend, not a single event; first human voice drawn from a foundational (2002) quote rather than a contemporary reaction |
