@@ -111,8 +111,14 @@ def render_card(s):
         freshness_attrs = f' title="{html.escape(tooltip)}"'
         freshness += " &middot; evolving"
 
+    url = s.get("url", "")
+    if url:
+        moment_html = f'<a href="{html.escape(url)}" class="storyline-moment" target="_blank" rel="noopener">{html.escape(s["moment"])}</a>'
+    else:
+        moment_html = f'<strong class="storyline-moment">{html.escape(s["moment"])}</strong>'
+
     return f"""      <li class="storyline-item">
-        <span class="storyline-main"><strong class="storyline-moment">{html.escape(s['moment'])}</strong> &mdash; {html.escape(s['why_now'])}</span>
+        <span class="storyline-main">{moment_html} &mdash; {html.escape(s['why_now'])}</span>
         <span class="storyline-freshness"{freshness_attrs}>{freshness}</span>
       </li>"""
 
