@@ -1,8 +1,8 @@
 # Why Today?
 
-Every day contains a question hiding in plain sight.
+Every week contains a question hiding in plain sight.
 
-*Why Today?* is an experiment in finding it.
+*Why Today?* is an experiment in finding it — one edition a week, built around whatever the world was already looking at without quite seeing.
 
 Each edition begins with something millions of people are already living through — a heat dome, a penalty shootout, a national birthday — and asks:
 

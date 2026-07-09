@@ -20,6 +20,20 @@ The goal is not to produce seven good editions. The goal is to discover whether 
 
 ---
 
+## Publishing Cadence
+
+**Changed after Edition 008: daily → weekly.**
+
+The daily cadence implied by the name was never actually the constraint that mattered — the constraint is editorial review capacity. Each edition requires a human checkpoint (survey → finalists → research → construction approval), and that loop does not scale to daily. Edition 008 also produced direct evidence that a longer window helps rather than hurts: its strongest material came from a *week's* accumulation of storylines (DeepSeek → Qwen → Hy3), not a single day's news — the daily cadence hadn't actually been holding anyway (001/002/003 published same-day, then a gap to 006).
+
+**What this changes procedurally:** the Selection Algorithm's Step 1 Survey (`system/ALGORITHM.md`) now surveys the *past week's* shared moments, not a single day's. Templates updated to match.
+
+**What this doesn't change:** the core thesis — start from something people are already paying attention to, find the durable question underneath it. That thesis was always about *what the news is a doorway into*, not about publishing frequency.
+
+**On the name:** "Why Today?" no longer describes the publishing schedule literally. Decision (see this session's conversation): keep the name for now, understood as a proper-noun brand rather than a literal daily claim — renaming is a separate, smaller problem, deliberately deferred rather than resolved. Revisit once weekly cadence has run long enough to know if the name tension actually bothers readers or just us.
+
+---
+
 ## What We Know
 
 **The editorial move works.** Three editions. Three different emotional registers (wonder, concern, quiet delight). All three produced the "I never thought about it that way" response.
