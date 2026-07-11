@@ -118,6 +118,10 @@ A skipped day is better than a weak edition. Publishing a weak edition establish
 **We are not explaining today's news. We are making today's conversations more interesting.**
 The reader brings their own awareness of the event. We bring a different lens. The edition should leave the reader better equipped for today's conversations, not better informed about today's events.
 
+**The edition's deepest work is perspective, not information.**
+When the subject is another culture, economy, or way of life, the edition succeeds not when the reader learns a fact but when they understand how other people experience their daily lives differently. The "I never thought about it that way" test has a deeper form: "I never understood how *they* see it." An edition that achieves this leaves the reader with a permanent lens — a way of reading everything they will encounter about that place or system afterward.
+*(Source: Edition 009 editorial conversation — SK Hynix / chaebol economy)*
+
 **The question is the product. The essay is the evidence.**
 The intellectual property of this publication is not its writing. It is its ability to repeatedly find the questions that create genuine curiosity. Protect and develop that capacity above everything else.
 *(Source: Brett's observation, Edition 001 feedback)*
