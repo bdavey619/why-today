@@ -4,6 +4,18 @@
 
 ---
 
+## Editorial Objective
+
+Why Today? uses a current shared moment as an entry point into a deeper structure, history, place, or way of life. The shared moment is the door. The edition is what's behind it.
+
+The edition succeeds when it creates a durable lens the reader carries beyond the page — when they will notice something differently tomorrow that they were already walking past today. Facts, research, visuals, quotes, and narrative exist in service of that perceptual change. Knowledge is not the end product. Curiosity is.
+
+**An edition should create a durable lens, not merely deliver durable knowledge.**
+
+A reader should finish the edition wanting to keep looking.
+
+---
+
 ## Overview
 
 Every edition moves through five phases:
@@ -158,6 +170,7 @@ Run the draft against FAILURE_MODES.md. Every named failure mode should be check
 - [ ] No section over-explains what the reader already understood
 - [ ] At least one non-prose element (if the content warrants it)
 - [ ] Edition has been checked against FAILURE_MODES.md
+- [ ] **Tomorrow, what ordinary thing will the reader notice differently because of this edition?** (Name it concretely — a billboard, a weather forecast, a squad roster, a historical date. If there is no clear answer, the edition may be informative rather than transformational.)
 
 ### Postmortem:
 

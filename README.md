@@ -1,14 +1,8 @@
 # Why Today?
 
-Every week contains a question hiding in plain sight.
+*Why Today?* uses the week's shared attention as a doorway into a deeper question. Each edition is designed to leave the reader seeing something differently after the news itself is forgotten.
 
-*Why Today?* is an experiment in finding it — one edition a week, built around whatever the world was already looking at without quite seeing.
-
-Each edition begins with something millions of people are already living through — a heat dome, a penalty shootout, a national birthday — and asks:
-
-> What is everyone looking at without actually seeing?
-
-The goal is not to explain today's news. The goal is to help readers notice something they already knew differently.
+Each edition begins with something millions of people are already living through — a heat dome, a penalty shootout, a national birthday — and asks the question hiding underneath it. The answer does more than explain today's story. It changes what the reader will notice tomorrow.
 
 The reader's test: *"I never thought about it that way."*
 

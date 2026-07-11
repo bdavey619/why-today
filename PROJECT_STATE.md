@@ -1,6 +1,6 @@
 # Project State
 
-*Last updated: July 8, 2026 — after Edition 008*
+*Last updated: July 11, 2026 — after Edition 010*
 
 ---
 
@@ -53,6 +53,8 @@ The daily cadence implied by the name was never actually the constraint that mat
 **The emotional register varies — and should.** Edition 001: wonder. Edition 002: concern. Edition 003: a quiet smile. All felt like *Why Today?*. The unifying quality is curiosity, not tone.
 
 **The repository preserves editorial experience.** Not knowledge (the editions do that). Not taste (editions can't transfer that). The documented decisions — what we chose, what we refused, what we almost became — are the compounding asset.
+
+**The edition's deepest work is perceptual change, not information delivery.** Edition 010 (South Korea / chaebols) clarified what a successful edition actually produces. After reading it, the editor wanted to revisit Korea, look differently at advertising and architecture associated with chaebols, hear more about everyday Korean life, reread or watch related cultural works, and approach future Korean headlines with more emotional and historical context. This is not a side effect of a good edition — it is the product. The edition succeeded not because it delivered facts about conglomerates or the pardon cycle, but because it gave the reader a permanent lens for reading a place. The test: will the reader notice something differently tomorrow that they were already walking past today? A reader who can answer that question concretely — a Samsung billboard, a World Cup squad, a national holiday — has received what the edition was for.
 
 ---
 
@@ -182,3 +184,5 @@ The operating system lives in [`docs/`](docs/). Templates live in [`templates/`]
 | 006 | 2026-07-01 | Wonder sharpening into irony | Conversation | First edition built with full OS; unresolved opening discovered |
 | 007 | 2026-07-05 | Wonder sharpening into something heavier | Conversation | Morocco/France; colonial history as squad list; first clean single-draft construction |
 | 008 | 2026-07-08 | Wonder sharpening into unease | Conversation | China AI open-source strategy; first shared moment sourced from a trend, not a single event; first human voice drawn from a foundational (2002) quote rather than a contemporary reaction |
+| 009 | 2026-07-11 | Wonder sharpening into scale | Carry / lens | SK Hynix Nasdaq debut; HBM backstory; near-bankruptcy to AI backbone; first edition with a clear business/technology register |
+| 010 | 2026-07-11 | Unease sharpening into empathy | Lens / perception | Korean chaebols; pardon cycle; sampo / Hell Joseon; first edition to produce explicit perceptual carry — reader left wanting to revisit a country |
