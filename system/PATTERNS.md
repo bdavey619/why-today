@@ -172,6 +172,35 @@ Both are real revelations — the moment when the specific surprising answer ope
 
 ---
 
+### C-07 — The Edition Photo
+
+**Status:** Hypothesis — deliberate editorial decision after Edition 010 trial; awaiting confirmation across multiple editions
+
+**Structure:**
+A single photograph placed between the revelation wrapper and the first paragraph of body content, with a descriptive caption
+
+**Observed in:** Edition 010
+
+**Description:**
+Edition 010 introduced a photograph of Teheran-ro (Seoul's corporate corridor) between the revelation wrapper and the body content. The image served not as illustration but as orientation — giving the reader a visual anchor for the world the edition was about to describe. The caption extended that work: "The advertising is a map of who runs the country."
+
+The effect is grounding in place and texture before the argument begins. The reader enters the body content already holding an image, so subsequent mentions of Samsung towers, Gangnam-gu, and Korean street-level culture all land against something they've already seen.
+
+**Editorial standard:** Every edition should include a photograph. The photo does real work — not decoration, but orientation. Ask: does this image give the reader something they need to be in the right place for the edition's argument?
+
+**Placement:** Between the revelation wrapper and the first paragraph of body content.
+
+**Caption standard:** Factual description, then one editorial sentence that gives the image meaning in context of the edition. Source credit (Wikimedia Commons / CC license).
+
+**Source preference:** Wikimedia Commons. URL formula: `https://upload.wikimedia.org/wikipedia/commons/[a]/[ab]/Filename`, where `a` and `ab` are the first 1 and 2 hex characters of the MD5 hash of the exact filename. Compute with: `echo -n "Filename.jpg" | md5sum | cut -c1-2`.
+
+**What it replaces:** Pure text editions with no visual grounding.
+
+**Watch for:** Whether the photo consistently increases immersion or whether some editions are stronger without one.
+*(Source: Edition 010 — Teheran-ro trial; user: "I didn't realize how much adding a photo increases the richness.")*
+
+---
+
 ## Patterns Under Watch
 
 *(Observations that may become candidate patterns with more evidence. Not yet promoted.)*
