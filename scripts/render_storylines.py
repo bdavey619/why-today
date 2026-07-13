@@ -3,10 +3,11 @@
 Deterministic renderer for the public storylines page.
 
 This script owns everything that should NOT depend on an LLM's diligence:
-weekly rollover, stale pruning, sorting, and HTML rendering. The only fuzzy
-judgment call (does a new search result match an existing storyline) happens
-upstream, in the Claude session that runs on each scheduled firing and edits
-data.json directly before calling this script.
+weekly rollover, stale pruning, sorting, and HTML rendering. The fuzzy
+judgment calls (matching search results to existing storylines, proposing
+hidden questions, rating editorial potential) happen upstream, in the Claude
+session that runs on each scheduled firing and edits data.json directly
+before calling this script.
 
 Usage: python3 scripts/render_storylines.py
 Reads/writes: docs/storylines/data.json, docs/storylines/index.html
@@ -34,6 +35,8 @@ CATEGORY_ORDER = [
     "Culture & Entertainment",
     "Odd & Human Interest",
 ]
+
+POTENTIAL_RANK = {"high": 0, "medium": 1, "low": 2}
 
 
 def parse_dt(s):
@@ -117,9 +120,21 @@ def render_card(s):
     else:
         moment_html = f'<strong class="storyline-moment">{html.escape(s["moment"])}</strong>'
 
+    potential = s.get("editorial_potential", "")
+    potential_html = ""
+    if potential:
+        potential_html = f'<span class="storyline-potential potential-{html.escape(potential)}">{html.escape(potential)}</span> '
+
+    hidden_q = s.get("hidden_question", "")
+    hidden_q_html = ""
+    if hidden_q:
+        hidden_q_html = f'\n        <p class="storyline-hidden-question">{html.escape(hidden_q)}</p>'
+
     return f"""      <li class="storyline-item">
-        <span class="storyline-main">{moment_html} &mdash; {html.escape(s['why_now'])}</span>
-        <span class="storyline-freshness"{freshness_attrs}>{freshness}</span>
+        <div class="storyline-row">
+          <span class="storyline-main">{potential_html}{moment_html} &mdash; {html.escape(s['why_now'])}</span>
+          <span class="storyline-freshness"{freshness_attrs}>{freshness}</span>
+        </div>{hidden_q_html}
       </li>"""
 
 
@@ -127,7 +142,11 @@ def render_category(category, items):
     if not items:
         return ""
     items_sorted = sorted(
-        items, key=lambda s: (s.get("appearances", 1), s["last_seen"]), reverse=True
+        items,
+        key=lambda s: (
+            POTENTIAL_RANK.get(s.get("editorial_potential", ""), 3),
+            -s.get("appearances", 1),
+        ),
     )
     cards = "\n".join(render_card(s) for s in items_sorted)
     return f"""    <div class="storyline-category">
