@@ -12,6 +12,9 @@ The reader's test: *"I never thought about it that way."*
 
 | | | |
 |---|---|---|
+| [**No. 011**](https://bdavey619.github.io/why-today/editions/011/) | July 18, 2026 | What does Christopher Nolan understand about movies that the rest of Hollywood doesn't? |
+| [**No. 010**](https://bdavey619.github.io/why-today/editions/010/) | July 11, 2026 | What does South Korea owe the families that built it? |
+| [**No. 009**](https://bdavey619.github.io/why-today/editions/009/) | July 11, 2026 | The chip that almost wasn't |
 | [**No. 008**](https://bdavey619.github.io/why-today/editions/008/) | July 8, 2026 | Why did China stop giving away the strategy that just won? |
 | [**No. 003**](https://bdavey619.github.io/why-today/editions/003/) | July 1, 2026 | Why does everyone know the safest penalty kick — and why can't anyone take it? |
 | [**No. 002**](https://bdavey619.github.io/why-today/editions/002/) | July 1, 2026 | What is the deadliest natural disaster in America? |
