@@ -7,13 +7,25 @@
 
 ## Step 1 — Survey
 
-*Approximately 20 shared moments from the past week. For each: the moment (one phrase) + why people have been paying attention.*
+*Begin with the cabinet of curiosities (`docs/storylines/index.html`). Note what is lingering, what has energy, what the automated routine may have missed.*
 
-| # | Shared Moment | Why Today |
-|---|--------------|-----------|
-| 1 | | |
-| 2 | | |
-| ... | | |
+*Then extend the survey to approximately 20 entries across all five collecting streams. For each: the observation or moment (one phrase) + why it deserves attention.*
+
+| # | Stream | Observation or Moment | Why Now |
+|---|--------|----------------------|---------|
+| 1 | Natural World | | |
+| 2 | Natural World | | |
+| 3 | Human Rituals | | |
+| 4 | Human Rituals | | |
+| 5 | Places | | |
+| 6 | Curiosities | | |
+| 7 | Curiosities | | |
+| 8 | Headlines | | |
+| 9 | Headlines | | |
+| 10 | Headlines | | |
+| ... | | | |
+
+*The five streams: Natural World, Human Rituals, Places, Curiosities, Headlines. Headlines should not dominate the survey. A seasonal observation or a question about an ordinary thing may be stronger.*
 
 ---
 

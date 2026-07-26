@@ -105,3 +105,24 @@
 **What it looks like:** The hidden question is deeply interesting but belongs to a specialist audience rather than a general reader.
 **Example:** "Why did Canada become the world's leading builder of space robotics?" is fascinating to space enthusiasts. It requires background most readers don't have and doesn't connect to their daily experience.
 **Fix:** The hidden question should be surprising to a smart, curious person with no particular domain knowledge. If it requires domain fluency to appreciate, it is probably the wrong question.
+
+---
+
+## On the Collecting Phase
+
+### Forced Profundity
+**What it looks like:** A small, interesting observation is inflated into a grand philosophical claim before investigation has done any real work. The conclusion arrives before the evidence. The insight is manufactured rather than discovered.
+**Example:** "The tomato stem smells like summer" → AI immediately concludes "This is about how memory attaches to the senses, and what it means to be alive." The observation has been turned into a conclusion before any investigation happened.
+**Why it fails:** The investigation is now working backward from a predetermined meaning rather than following a genuine thread. The reader can feel the difference between a discovery and a declaration. Manufactured profundity sounds wise but resonates like a fortune cookie.
+**Fix:** Capture the observation without explaining it. Hold the question open. Let investigation produce the meaning — if there is meaning to produce. Not every observation needs to become profound. Some observations are just interesting, and that is enough.
+**The test:** Could this conclusion have been written before you noticed the thing? If yes, the profundity is manufactured.
+
+### The News Product Drift (collecting phase)
+**What it looks like:** The cabinet fills almost entirely with news headlines. The automated collecting routine returns mostly articles. The editorial meeting opens from a news story every week.
+**Why it fails:** This is a different product with different competition. It also narrows the definition of "today" to "today's headlines" — which misses the Natural World, the Human Rituals, the Places, and the Curiosities that make up most of what any given day actually is.
+**Fix:** The cabinet should aim for no more than half headlines at any given time. If the Natural World, Human Rituals, Places, and Curiosities streams are consistently empty, the collecting routine is drifting back toward news curation. Adjust the automated session prompt and contribute personal observations directly.
+
+### The Dormant Overload
+**What it looks like:** Every interesting curiosity is escalated to investigation rather than left to develop. The cabinet has no dormant entries — everything is either published or discarded.
+**Why it fails:** Many curiosities need time. A question about stone fruit ripening in July may be perfect in August after more observation. A curiosity about a neighborhood may need to be visited. An observation about fog may need to survive a season to understand whether it's an anomaly or a pattern.
+**Fix:** Dormant is a valid permanent status. Set observations to Dormant rather than discarding them. Review dormant entries seasonally. The best discoveries sometimes come from a curiosity that sat for months before the right context made it urgent.

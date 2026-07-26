@@ -60,11 +60,15 @@ See QUESTIONS.md. The most critical:
 **Goal:** Choose one question from among many good ones that will produce a surprising sentence.
 
 #### Step 1 — Survey
-Generate approximately 20 shared moments across diverse domains. For each:
-- State the shared moment
-- State why people have been paying attention this week
+Review the cabinet of curiosities (`docs/storylines/index.html`) first. The automated collecting routine surveys the week across five streams — Natural World, Human Rituals, Places, Curiosities, and Headlines. The editorial meeting draws from this cabinet rather than starting from scratch.
+
+Extend the survey with anything the cabinet missed. Generate approximately 20 entries across all five streams. For each:
+- State the observation or shared moment
+- State why it is worth paying attention this week
 
 *Operational note, not a version-ladder discovery: the survey window changed from "today" to "the past week" when publishing cadence moved from daily to weekly after Edition 008 (see `PROJECT_STATE.md`, "Publishing Cadence"). This was a capacity decision made directly by the editor, not a pattern earned through edition evidence — logged here for accuracy, not as a v1.x change.*
+
+*Collecting expansion, after Edition 011: the survey now explicitly covers all five collecting streams rather than only news categories. News remains one stream. The observation or curiosity may originate in the Natural World, a Human Ritual, a Place, or a free-standing Curiosity — any of these can open a Why Today? edition. See `system/COLLECTING.md`.*
 
 Do not editorialize yet. The survey is observational.
 

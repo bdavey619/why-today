@@ -36,6 +36,22 @@ These documents are not supplementary. They are the publication's institutional 
 
 ---
 
+## The Cabinet of Curiosities
+
+Before an edition, there is a cabinet. The cabinet is a collection of observations, questions, and threads across five streams:
+
+- **Natural World** — what the living world is doing this week
+- **Human Rituals** — what millions of people are doing quietly, without announcement
+- **Places** — specific places behaving in interesting ways
+- **Curiosities** — questions that don't yet have satisfying answers
+- **Headlines** — timely news, treated as one entry point among several
+
+The cabinet is updated automatically and visible at [`docs/storylines/index.html`](docs/storylines/index.html). It is raw material, not finished work. Most observations remain unfinished — and should.
+
+News is one stream in the cabinet, not the primary frame.
+
+---
+
 ## The Workshop
 
 The editorial process, operating system, and knowledge base live in:
@@ -45,7 +61,14 @@ editions/        Editorial record for each edition (meeting, review, deposit)
 system/          The editorial operating system (algorithm, heuristics, patterns, failure modes)
 knowledge/       Concepts and objects that compound across editions
 templates/       Ready-to-use templates for each stage of production
+scripts/         Automated collecting routine and renderer
 ```
+
+Key documents:
+
+- [`system/COLLECTING.md`](system/COLLECTING.md) — the collecting philosophy, five streams, curiosity lifecycle, and daily/weekly cadence
+- [`system/ALGORITHM.md`](system/ALGORITHM.md) — the selection and construction algorithms
+- [`system/EDITORIAL_PLAYBOOK.md`](system/EDITORIAL_PLAYBOOK.md) — the practical handbook for producing an edition
 
 The operating system is currently at Version 1 — frozen until Edition 010. It earns revisions through evidence, not discussion.
 

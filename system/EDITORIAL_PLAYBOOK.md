@@ -18,9 +18,10 @@ A reader should finish the edition wanting to keep looking.
 
 ## Overview
 
-Every edition moves through five phases:
+Every edition moves through six phases:
 
-1. **Editorial Meeting** — identify today's shared moments and find the hidden question
+0. **Collecting** — notice, capture, and follow threads across five streams (ongoing)
+1. **Editorial Meeting** — survey the cabinet and find the hidden question worth pursuing
 2. **Research** — find the surprising sentence and let the question evolve
 3. **Writing** — build the edition around the surprising sentence
 4. **Revision** — cut everything that doesn't strengthen the frame
@@ -30,23 +31,72 @@ The edition is finished when the reader can carry the surprising sentence into a
 
 ---
 
+## Phase 0 — Collecting
+
+**Cadence:** Daily, with weekly review. See `system/COLLECTING.md` for the full operating guide.
+
+**Goal:** Build and maintain a cabinet of curiosities across five streams — Natural World, Human Rituals, Places, Curiosities, and Headlines. The cabinet is the raw material from which the editorial meeting draws.
+
+### The Five Streams
+
+The automated collecting routine (see `scripts/STORYLINES_PROMPT.md`) surveys all five streams. You can also contribute directly — capturing personal observations, photographs, questions, or seasonal details.
+
+**The essential capture is two fields:**
+
+*I noticed…* — the raw observation, before explanation.
+
+*I wonder…* — the opening question, before research.
+
+Everything else can develop later.
+
+### Collecting Principles
+
+**News is one stream, not the primary frame.** Headlines earn their place in the cabinet by containing a genuine curiosity — a paradox, a reversal, an unanswered question. Headlines that are merely important or timely should be noted briefly and given low editorial potential.
+
+**Most observations should remain unfinished.** The cabinet is not a production queue. It is a field notebook. Dormant curiosities remain searchable and may become relevant in a different season or context.
+
+**The status lifecycle:** Captured → Curious → Investigating → Thread Found → Ready to Shape → Published → Dormant. Nothing is required to progress. Set items Dormant when they are not currently active.
+
+### Weekly Cabinet Review
+
+Once a week, before or instead of a new editorial meeting, review the cabinet and ask:
+
+- What is still lingering from last week?
+- Which observations are beginning to connect?
+- Which question has energy — the kind that makes me want to follow a thread?
+- Is there one curiosity that deserves deeper investigation?
+
+Choose no more than one primary investigation at a time.
+
+---
+
 ## Phase 1 — Editorial Meeting
 
 **Time budget:** 60–90 minutes each morning.
 
 **Goal:** Choose one hidden question from among many good ones.
 
-### Step 1A — Survey Today's World
+### Step 1A — Survey the Cabinet and Today's World
 
-Search broadly. Do not limit yourself to major headlines.
+Begin by reviewing the cabinet of curiosities (`docs/storylines/index.html`). The automated collecting routine has already surveyed the week. Look for:
 
-Scan across: international news, sports, technology, science, business, culture, weather, travel, architecture, design, history, local stories with broader significance, recurring annual events, anniversaries, anything that feels culturally present.
+- What is still lingering from previous sessions?
+- Which curiosities have developed (more appearances, updated hidden questions)?
+- Which streams are underrepresented this week?
 
-Produce approximately 20 shared moments. For each, write:
-- The shared moment (one phrase)
-- One sentence: why people are paying attention today
+Then extend the survey to any areas the automated routine may have missed. Scan across all five streams:
 
-**Important:** You are looking for the conversations people are already having, not the most important events. A medium story that touches something universal beats a major story that stays in its lane.
+- **Natural World:** What is the living world doing this week? Seasonal events, weather patterns, ecological changes, sky events.
+- **Human Rituals:** What are millions of people doing quietly right now? What ritual defines this exact moment of the year?
+- **Places:** What is a specific place doing that is worth noticing?
+- **Curiosities:** What questions came up this week that don't yet have satisfying answers?
+- **Headlines:** What news contains a genuine curiosity underneath it?
+
+Produce approximately 20 entries across all five streams. For each, write:
+- The observation or shared moment (one phrase)
+- One sentence: why it is worth paying attention to
+
+**Important:** You are not looking for the most important events. You are looking for the most interesting questions. A medium story with a genuine paradox underneath it beats a major story that stays in its lane. A seasonal observation may beat both.
 
 ### Step 1B — Generate Hidden Questions
 
