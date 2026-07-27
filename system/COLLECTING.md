@@ -330,6 +330,37 @@ Most curiosities should be allowed to remain permanently unfinished. Dormant ent
 
 ---
 
+## The Observer Architecture
+
+The automated collecting session does not run as a single agent applying one filter to the week's news. It runs as seven independent observers, each with a distinct primary question, distinct sources, and a distinct way of noticing.
+
+| Observer | Primary question | Default stream |
+|----------|-----------------|---------------|
+| **The Naturalist** | What in the living world changed this week? | Natural World |
+| **The Anthropologist** | What are millions of people quietly doing right now? | Human Rituals |
+| **The Geographer** | What is a specific place doing that reveals something true about it? | Places |
+| **The Craftsperson** | What does someone who does this for a living notice that most people miss? | Curiosities |
+| **The Threshold Watcher** | What threshold was crossed this week? | Natural World / Human Rituals / Places |
+| **The Systems Observer** | What invisible system became visible this week? | Curiosities |
+| **Headlines** | What happened this week that contains a genuine curiosity? | Headlines |
+
+After all seven observers submit their entries, a **synthesis pass** looks for entries from different observers that, seen together, reveal a pattern none reveals alone. Related entries are linked with a shared `cluster_id`.
+
+### Two additional fields per entry
+
+**`pattern`** — "What is becoming true?" Not "What happened?" A directional claim, not an event description.
+- Not: "France is burning again"
+- Yes: "Southern Europe is becoming a structurally less reliable summer destination"
+
+**`transferability`** — "If someone understood this, where else would they begin noticing it?" One sentence.
+- "Understanding the overnight low mechanism means noticing every hotel's position on a hillside."
+
+Both fields may be left empty on initial capture and filled in during investigation.
+
+The detailed prompt for each observer — including sources, voice, and what to avoid — lives in `scripts/STORYLINES_PROMPT.md`.
+
+---
+
 ## What This Document Does Not Govern
 
 The editorial algorithms for selecting questions and constructing editions remain in `system/ALGORITHM.md`. The heuristics for evaluating hidden questions remain in `system/HEURISTICS.md`. The patterns and failure modes remain in their respective documents.
@@ -338,4 +369,4 @@ This document governs the phase before the editorial meeting: how observations a
 
 ---
 
-*This document was written as part of the collecting system redesign after Edition 011. It reflects a deliberate expansion of the collection model from news-centered to curiosity-centered.*
+*This document was written as part of the collecting system redesign after Edition 011. Observer architecture added after Edition 011, reflecting a further evolution from one-agent to seven-observer collecting intelligence.*
