@@ -154,15 +154,25 @@ def render_pattern(p):
     explanation = html.escape(p.get("explanation", ""))
     evidence    = p.get("evidence", [])[:4]
 
+    ev_count  = len(evidence)
+    new_count = sum(1 for e in evidence if e.get("is_new", False))
+    count_label = f"{ev_count} source{'s' if ev_count != 1 else ''}"
+    new_el = f' <span class="ev-summary-new">{new_count} new</span>' if new_count else ""
+
     ev_items = "\n".join(render_evidence_item(e) for e in evidence)
 
     return f"""\
     <article class="pattern" id="{pid}">
       <h2 class="pattern-title">{title}</h2>
       <p class="pattern-explanation">{explanation}</p>
-      <ul class="evidence-list">
+      <details class="evidence-details">
+        <summary class="evidence-toggle">
+          <span class="ev-summary-count">{html.escape(count_label)}</span>{new_el}
+        </summary>
+        <ul class="evidence-list">
 {ev_items}
-      </ul>
+        </ul>
+      </details>
     </article>"""
 
 
@@ -342,12 +352,79 @@ body {
   margin-bottom: 28px;
 }
 
-/* ── EVIDENCE ── */
+/* ── EVIDENCE TOGGLE ── */
+.evidence-details {
+  margin-top: 24px;
+}
+
+.evidence-details > summary {
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.evidence-details > summary::-webkit-details-marker { display: none; }
+
+.evidence-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 0;
+}
+
+.evidence-toggle::after {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid var(--text-3);
+  transition: transform 0.18s ease;
+  position: relative;
+  top: 1px;
+}
+
+.evidence-details[open] > summary .evidence-toggle::after {
+  transform: rotate(180deg);
+}
+
+.ev-summary-count {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.ev-summary-new {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 1px 6px;
+  border-radius: 2px;
+}
+
+.evidence-toggle:hover .ev-summary-count { color: var(--text-2); }
+.evidence-toggle:hover::after { border-top-color: var(--text-2); }
+
+/* ── EVIDENCE LIST ── */
 .evidence-list {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 0;
+  margin-top: 12px;
+  animation: evidenceIn 0.18s ease-out;
+}
+
+@keyframes evidenceIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .ev-item {
