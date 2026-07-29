@@ -16,6 +16,8 @@ The pipeline reflects this:
 
 The reader is the subject. The recognition is what they leave with.
 
+The cabinet provides observations. The recognizer is responsible for forgetting their boundaries.
+
 ---
 
 ## The Tests
@@ -66,6 +68,45 @@ The evidence is dated. The recognition is not.
 
 ---
 
+## Process
+
+Recognitions are not extracted from stories. They emerge from held attention across the whole cabinet. The question is not *what recognition belongs to this story?* but *what stories belong to this recognition?*
+
+**Stage 1 — Immersion**
+
+Read the entire cabinet without producing anything. No notes, no candidate recognitions, no interim analysis. The goal is to hold the full week in mind simultaneously. Any summary written during Stage 1 becomes a new abstraction layer between the material and the synthesis — that layer is what Stage 2 is designed to eliminate.
+
+**Stage 2 — Incubation and Synthesis**
+
+The cabinet disappears. No storyline names, no domains, no sources.
+
+Before generating anything: sit with the material. Let unrelated things collide. Recognitions often emerge from held attention rather than immediate analysis — the pause matters. Only once those collisions begin producing something should anything be written down.
+
+The question is not *what do I now understand?* but *what became recognizable?*
+
+- What became visible this week that is usually invisible?
+- What did I suddenly have language for?
+- What truth now feels obvious that didn't have a name before?
+- What would make a reader stop and think, "I've felt that before, but I never knew how to say it"?
+
+A recognition doesn't usually feel like learning something new. It feels like finally putting words to something you already half-knew. Generate candidates from that feeling, not from explanation.
+
+Express each candidate as a single complete sentence. No evidence, no explanation. Do not organize by domain or story.
+
+**Stage 3 — Refine**
+
+Apply the four editorial tests to each candidate. Merge candidates that are different expressions of the same underlying recognition. Split any candidate that requires two separate insights to be legible. Discard observations — a claim says *this is how things work*, not *this happened*.
+
+Note the scale of each surviving candidate: perceptual, seasonal, institutional, technological, civilizational. A strong edition includes recognitions from more than one scale.
+
+**Stage 4 — Return to Evidence**
+
+Now and only now, return to the cabinet. For each surviving candidate, search for 3–4 items that show the recognition operating in distinct domains. Evidence is assigned to recognitions — recognitions are not generated from evidence.
+
+If the cabinet cannot support a recognition with evidence from at least 3 distinct domains, the recognition is discarded — not because it is wrong, but because this edition is not the right moment for it. Evidence from outside the cabinet may be added if the recognition is strong but underserved.
+
+---
+
 ## Structure
 
 Each recognition has three parts:
@@ -82,7 +123,7 @@ Each recognition has three parts:
 
 Recognitions are stored in `docs/patterns/data.json` under the `recognitions` array. Each recognition:
 
-```json
+\`\`\`json
 {
   "id": "kebab-case-identifier",
   "title": "A complete sentence expressing the recognition.",
@@ -98,7 +139,7 @@ Recognitions are stored in `docs/patterns/data.json` under the `recognitions` ar
     }
   ]
 }
-```
+\`\`\`
 
 Maximum 6 recognitions per edition. Minimum 3 evidence items per recognition, maximum 4.
 
