@@ -99,38 +99,33 @@ def render_evidence_item(item):
     url    = item.get("url", "").strip()
 
     if url:
-        label     = html.escape(source_label(url))
-        source_el = f' <span class="ev-source">{label}</span>' if label else ""
-        text_html = (
-            f'<a href="{html.escape(url)}" class="ev-link" '
-            f'target="_blank" rel="noopener">{text}</a>{source_el}'
+        read_more = (
+            f'\n          <a href="{html.escape(url)}" class="ev-read-more" '
+            f'target="_blank" rel="noopener">Read more &#x2192;</a>'
         )
     else:
-        text_html = text
+        read_more = ""
 
     return f"""\
         <li class="ev-item">
           <span class="ev-domain">{domain}</span>
-          <span class="ev-text">{text_html}</span>
+          <div class="ev-body">
+            <p class="ev-text">{text}</p>{read_more}
+          </div>
         </li>"""
 
 
 def render_pattern(p):
-    pid        = html.escape(p.get("id", ""))
-    title      = html.escape(p.get("title", ""))
-    explanation= html.escape(p.get("explanation", ""))
-    momentum   = p.get("momentum", "building")
-    m_label    = html.escape(MOMENTUM_LABELS.get(momentum, momentum.title()))
-    evidence   = p.get("evidence", [])[:4]  # cap at 4
+    pid         = html.escape(p.get("id", ""))
+    title       = html.escape(p.get("title", ""))
+    explanation = html.escape(p.get("explanation", ""))
+    evidence    = p.get("evidence", [])[:4]
 
     ev_items = "\n".join(render_evidence_item(e) for e in evidence)
 
     return f"""\
     <article class="pattern" id="{pid}">
-      <header class="pattern-header">
-        <span class="momentum-chip momentum-{html.escape(momentum)}">{m_label}</span>
-        <h2 class="pattern-title">{title}</h2>
-      </header>
+      <h2 class="pattern-title">{title}</h2>
       <p class="pattern-explanation">{explanation}</p>
       <ul class="evidence-list">
 {ev_items}
@@ -296,33 +291,6 @@ body {
   border-bottom: none;
 }
 
-/* ── PATTERN HEADER ── */
-.pattern-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-
-.momentum-chip {
-  flex-shrink: 0;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 3px 7px;
-  border-radius: 2px;
-  margin-top: 5px;
-}
-
-.momentum-building     { color: var(--c-building);  background: var(--c-building-bg); }
-.momentum-accelerating { color: var(--c-accel);     background: var(--c-accel-bg); }
-.momentum-peaking      { color: var(--c-peaking);   background: var(--c-peaking-bg); }
-.momentum-fading       { color: var(--c-fading);    background: var(--c-fading-bg); }
-.momentum-acute        { color: var(--c-acute);     background: var(--c-acute-bg); }
-.momentum-persistent   { color: var(--c-persist);   background: var(--c-persist-bg); }
-
 .pattern-title {
   font-family: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
   font-size: clamp(19px, 3vw, 24px);
@@ -330,8 +298,7 @@ body {
   line-height: 1.25;
   color: var(--text);
   text-wrap: balance;
-  flex: 1;
-  min-width: 0;
+  margin-bottom: 20px;
 }
 
 /* ── EXPLANATION ── */
@@ -354,8 +321,8 @@ body {
   display: grid;
   grid-template-columns: 92px 1fr;
   gap: 0 16px;
-  align-items: baseline;
-  padding: 10px 0;
+  align-items: start;
+  padding: 14px 0;
   border-top: 1px solid var(--rule);
 }
 
@@ -369,36 +336,32 @@ body {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-3);
-  padding-top: 1px;
+  padding-top: 2px;
   line-height: 1.5;
+}
+
+.ev-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .ev-text {
   font-size: 14px;
   line-height: 1.6;
   color: var(--text-2);
+  margin: 0;
 }
 
-.ev-link {
-  color: inherit;
-  text-decoration-color: var(--rule);
-  text-underline-offset: 2px;
-}
-
-.ev-link:hover {
-  color: var(--accent);
-  text-decoration-color: var(--accent);
-}
-
-.ev-source {
-  display: inline-block;
-  margin-left: 6px;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.ev-read-more {
+  font-size: 12px;
   color: var(--text-3);
-  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.ev-read-more:hover {
+  color: var(--accent);
 }
 
 /* ── FOOTER ── */
@@ -433,7 +396,7 @@ body {
 
   .ev-item {
     grid-template-columns: 1fr;
-    gap: 4px;
+    gap: 6px;
   }
   .ev-domain { padding-top: 0; }
 }
@@ -459,9 +422,11 @@ def render_page(data):
 
     cards = "\n\n".join(render_pattern(p) for p in patterns)
 
+    n = count if count > 0 else "No"
     description = (
-        f"{count} pattern{'s' if count != 1 else ''} "
-        "identified from this week's observations across the cabinet."
+        f"{n} underlying pattern{'s' if count != 1 else ''} explain much of what happened this week. "
+        "These aren't the biggest stories. "
+        "They're the hidden dynamics that made many seemingly unrelated stories happen at the same time."
     )
 
     return f"""<!DOCTYPE html>
