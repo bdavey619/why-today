@@ -90,6 +90,15 @@ def validate(data):
             elif not URL_RE.match(url):
                 errors.append(f"{ev_prefix}: URL does not look valid: '{url}'")
 
+            # Optional fields — validate format if present
+            date_val = ev.get("date", "")
+            if date_val and not isinstance(date_val, str):
+                errors.append(f"{ev_prefix}: 'date' must be a string")
+
+            is_new_val = ev.get("is_new", False)
+            if not isinstance(is_new_val, bool):
+                errors.append(f"{ev_prefix}: 'is_new' must be a boolean")
+
             if domain and domain in domains_seen:
                 errors.append(f"{prefix}: duplicate domain '{domain}' — each evidence item must come from a different domain")
             domains_seen.add(domain)

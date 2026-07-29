@@ -50,6 +50,30 @@ def fmt_updated(iso_dt):
     return dt.strftime("Updated %B %-d, %Y")
 
 
+def fmt_evidence_date(date_str):
+    """Format an evidence date for display. Handles full ISO, year-month, and 'annual'."""
+    if not date_str:
+        return ""
+    s = date_str.strip().lower()
+    if s == "annual":
+        return "Annual"
+    try:
+        # Full date: YYYY-MM-DD
+        d = datetime.fromisoformat(s)
+        return d.strftime("%b %-d")
+    except ValueError:
+        pass
+    try:
+        # Year-month: YYYY-MM
+        parts = s.split("-")
+        if len(parts) == 2:
+            d = datetime(int(parts[0]), int(parts[1]), 1)
+            return d.strftime("%b %Y")
+    except (ValueError, IndexError):
+        pass
+    return date_str
+
+
 SOURCE_LABELS = {
     "wusf.org":              "WUSF",
     "beinsure.com":          "BEinsure",
@@ -94,9 +118,16 @@ def source_label(url):
 
 
 def render_evidence_item(item):
-    domain = html.escape(item.get("domain", ""))
-    text   = html.escape(item.get("text", ""))
-    url    = item.get("url", "").strip()
+    domain   = html.escape(item.get("domain", ""))
+    text     = html.escape(item.get("text", ""))
+    url      = item.get("url", "").strip()
+    date_raw = item.get("date", "")
+    is_new   = bool(item.get("is_new", False))
+
+    date_label = fmt_evidence_date(date_raw)
+    date_el    = f'\n          <time class="ev-date">{html.escape(date_label)}</time>' if date_label else ""
+    new_el     = '\n          <span class="ev-new-badge">New</span>' if is_new else ""
+    item_class = 'ev-item ev-item--new' if is_new else 'ev-item'
 
     if url:
         read_more = (
@@ -107,8 +138,10 @@ def render_evidence_item(item):
         read_more = ""
 
     return f"""\
-        <li class="ev-item">
-          <span class="ev-domain">{domain}</span>
+        <li class="{item_class}">
+          <div class="ev-meta">
+            <span class="ev-domain">{domain}</span>{new_el}{date_el}
+          </div>
           <div class="ev-body">
             <p class="ev-text">{text}</p>{read_more}
           </div>
@@ -330,14 +363,45 @@ body {
   border-bottom: 1px solid var(--rule);
 }
 
+.ev-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 2px;
+}
+
 .ev-domain {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-3);
-  padding-top: 2px;
-  line-height: 1.5;
+  line-height: 1.4;
+}
+
+.ev-new-badge {
+  display: inline-block;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 1px 5px;
+  border-radius: 2px;
+  width: fit-content;
+}
+
+.ev-date {
+  font-size: 10px;
+  color: var(--text-3);
+  letter-spacing: 0.03em;
+  font-style: normal;
+}
+
+.ev-item--new {
+  box-shadow: -3px 0 0 var(--accent);
+  padding-left: 12px;
 }
 
 .ev-body {
@@ -398,7 +462,8 @@ body {
     grid-template-columns: 1fr;
     gap: 6px;
   }
-  .ev-domain { padding-top: 0; }
+  .ev-meta { flex-direction: row; flex-wrap: wrap; gap: 6px; align-items: baseline; }
+  .ev-date { padding-top: 0; }
 }
 
 /* ── FOCUS ── */
