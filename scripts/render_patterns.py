@@ -14,6 +14,7 @@ import json
 import html
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA_PATH = ROOT / "docs" / "patterns" / "data.json"
@@ -49,15 +50,60 @@ def fmt_updated(iso_dt):
     return dt.strftime("Updated %B %-d, %Y")
 
 
+SOURCE_LABELS = {
+    "wusf.org":              "WUSF",
+    "beinsure.com":          "BEinsure",
+    "wine-searcher.com":     "Wine-Searcher",
+    "undercurrentnews.com":  "Undercurrent News",
+    "aljazeera.com":         "Al Jazeera",
+    "eia.gov":               "EIA",
+    "gcaptain.com":          "gCaptain",
+    "fortune.com":           "Fortune",
+    "forbes.com":            "Forbes",
+    "techtimes.com":         "Tech Times",
+    "accuweather.com":       "AccuWeather",
+    "earthsky.org":          "EarthSky",
+    "nationaltoday.com":     "National Today",
+    "cnn.com":               "CNN",
+    "cnbc.com":              "CNBC",
+    "pbs.org":               "PBS",
+    "npr.org":               "NPR",
+    "nytimes.com":           "NYT",
+    "washingtonpost.com":    "Washington Post",
+    "reuters.com":           "Reuters",
+    "apnews.com":            "AP",
+    "bbc.com":               "BBC",
+    "bbc.co.uk":             "BBC",
+    "theguardian.com":       "Guardian",
+    "ft.com":                "FT",
+    "wsj.com":               "WSJ",
+    "bloomberg.com":         "Bloomberg",
+    "axios.com":             "Axios",
+    "politico.com":          "Politico",
+    "forward.com":           "Forward",
+    "brookings.edu":         "Brookings",
+}
+
+
+def source_label(url):
+    try:
+        host = urlparse(url).netloc.lstrip("www.")
+        return SOURCE_LABELS.get(host, host)
+    except Exception:
+        return ""
+
+
 def render_evidence_item(item):
     domain = html.escape(item.get("domain", ""))
     text   = html.escape(item.get("text", ""))
     url    = item.get("url", "").strip()
 
     if url:
+        label     = html.escape(source_label(url))
+        source_el = f' <span class="ev-source">{label}</span>' if label else ""
         text_html = (
             f'<a href="{html.escape(url)}" class="ev-link" '
-            f'target="_blank" rel="noopener">{text}</a>'
+            f'target="_blank" rel="noopener">{text}</a>{source_el}'
         )
     else:
         text_html = text
@@ -342,6 +388,17 @@ body {
 .ev-link:hover {
   color: var(--accent);
   text-decoration-color: var(--accent);
+}
+
+.ev-source {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  vertical-align: middle;
 }
 
 /* ── FOOTER ── */
