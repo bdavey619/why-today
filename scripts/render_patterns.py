@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Renderer for the Why Today? patterns publication.
+Renderer for the Why Today? recognitions publication.
 
 Reads docs/patterns/data.json and writes docs/patterns/index.html.
-The patterns page is the primary reader-facing publication.
+The recognitions page is the primary reader-facing publication.
 
 Usage: python3 scripts/render_patterns.py
 Reads:  docs/patterns/data.json
@@ -36,7 +36,7 @@ def load_data():
     if not DATA_PATH.exists():
         return {"week": datetime.now(timezone.utc).date().isoformat(),
                 "last_updated": datetime.now(timezone.utc).isoformat(),
-                "patterns": []}
+                "recognitions": []}
     return json.loads(DATA_PATH.read_text())
 
 
@@ -106,6 +106,7 @@ SOURCE_LABELS = {
     "politico.com":          "Politico",
     "forward.com":           "Forward",
     "brookings.edu":         "Brookings",
+    "indexbox.io":           "IndexBox",
 }
 
 
@@ -148,11 +149,11 @@ def render_evidence_item(item):
         </li>"""
 
 
-def render_pattern(p):
-    pid         = html.escape(p.get("id", ""))
-    title       = html.escape(p.get("title", ""))
-    explanation = html.escape(p.get("explanation", ""))
-    evidence    = p.get("evidence", [])[:4]
+def render_recognition(r):
+    rid         = html.escape(r.get("id", ""))
+    title       = html.escape(r.get("title", ""))
+    explanation = html.escape(r.get("explanation", ""))
+    evidence    = r.get("evidence", [])[:4]
 
     ev_count  = len(evidence)
     new_count = sum(1 for e in evidence if e.get("is_new", False))
@@ -162,9 +163,9 @@ def render_pattern(p):
     ev_items = "\n".join(render_evidence_item(e) for e in evidence)
 
     return f"""\
-    <article class="pattern" id="{pid}">
-      <h2 class="pattern-title">{title}</h2>
-      <p class="pattern-explanation">{explanation}</p>
+    <article class="recognition" id="{rid}">
+      <h2 class="recognition-title">{title}</h2>
+      <p class="recognition-explanation">{explanation}</p>
       <details class="evidence-details">
         <summary class="evidence-toggle">
           <span class="ev-summary-count">{html.escape(count_label)}</span>{new_el}
@@ -176,11 +177,11 @@ def render_pattern(p):
     </article>"""
 
 
-def sort_patterns(patterns):
+def sort_recognitions(recognitions):
     return sorted(
-        patterns,
-        key=lambda p: MOMENTUM_ORDER.index(p.get("momentum", "building"))
-        if p.get("momentum", "building") in MOMENTUM_ORDER else 99
+        recognitions,
+        key=lambda r: MOMENTUM_ORDER.index(r.get("momentum", "building"))
+        if r.get("momentum", "building") in MOMENTUM_ORDER else 99
     )
 
 
@@ -318,23 +319,23 @@ body {
   letter-spacing: 0.04em;
 }
 
-/* ── PATTERNS ── */
-.patterns {
+/* ── RECOGNITIONS ── */
+.recognitions {
   max-width: var(--max);
   margin: 0 auto;
   padding: 0 24px 96px;
 }
 
-.pattern {
+.recognition {
   padding: 48px 0;
   border-bottom: 1px solid var(--rule);
 }
 
-.pattern:last-child {
+.recognition:last-child {
   border-bottom: none;
 }
 
-.pattern-title {
+.recognition-title {
   font-family: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
   font-size: clamp(19px, 3vw, 24px);
   font-weight: normal;
@@ -345,7 +346,7 @@ body {
 }
 
 /* ── EXPLANATION ── */
-.pattern-explanation {
+.recognition-explanation {
   font-size: 16px;
   line-height: 1.7;
   color: var(--text-2);
@@ -532,7 +533,7 @@ body {
 @media (max-width: 480px) {
   .masthead { padding: 20px 16px; }
   .lede     { padding: 36px 16px 32px; }
-  .patterns { padding: 0 16px 64px; }
+  .recognitions { padding: 0 16px 64px; }
   .footer   { padding: 24px 16px 40px; flex-direction: column; gap: 8px; }
 
   .ev-item {
@@ -559,14 +560,14 @@ def render_page(data):
     week_label  = fmt_week(data["week"])
     updated_str = fmt_updated(data["last_updated"])
 
-    patterns = sort_patterns(data.get("patterns", []))
-    count    = len(patterns)
+    recognitions = sort_recognitions(data.get("recognitions", []))
+    count        = len(recognitions)
 
-    cards = "\n\n".join(render_pattern(p) for p in patterns)
+    cards = "\n\n".join(render_recognition(r) for r in recognitions)
 
     n = count if count > 0 else "No"
     description = (
-        f"{n} underlying pattern{'s' if count != 1 else ''} explain much of what happened this week. "
+        f"{n} recognition{'s' if count != 1 else ''} from this week. "
         "These aren't the biggest stories. "
         "They're the hidden dynamics that made many seemingly unrelated stories happen at the same time."
     )
@@ -593,7 +594,7 @@ def render_page(data):
     <p class="lede-updated">{html.escape(updated_str)}</p>
   </section>
 
-  <div class="patterns">
+  <div class="recognitions">
 {cards}
   </div>
 
@@ -612,8 +613,8 @@ def main():
     DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_PATH.write_text(render_page(data))
 
-    count = len(data.get("patterns", []))
-    print(f"Read   {DATA_PATH} ({count} patterns)")
+    count = len(data.get("recognitions", []))
+    print(f"Read   {DATA_PATH} ({count} recognitions)")
     print(f"Wrote  {OUTPUT_PATH}")
 
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Validator for Why Today? patterns data.
+Validator for Why Today? recognitions data.
 
 Reads docs/patterns/data.json and verifies structural integrity before publishing.
 Exits with code 1 on any validation failure; prints all errors before exiting.
@@ -27,42 +27,41 @@ def validate(data):
         errors.append("Missing top-level field: week")
     if "last_updated" not in data:
         errors.append("Missing top-level field: last_updated")
-    if "patterns" not in data:
-        errors.append("Missing top-level field: patterns")
+    if "recognitions" not in data:
+        errors.append("Missing top-level field: recognitions")
         return errors
 
-    patterns = data["patterns"]
-    if not isinstance(patterns, list) or len(patterns) == 0:
-        errors.append("patterns must be a non-empty list")
+    recognitions = data["recognitions"]
+    if not isinstance(recognitions, list) or len(recognitions) == 0:
+        errors.append("recognitions must be a non-empty list")
         return errors
 
-    if len(patterns) > 6:
-        errors.append(f"Too many patterns: {len(patterns)} (maximum 6)")
+    if len(recognitions) > 6:
+        errors.append(f"Too many recognitions: {len(recognitions)} (maximum 6)")
 
     seen_ids = set()
-    seen_domains_per_pattern = {}
 
-    for i, p in enumerate(patterns):
-        pid = p.get("id", f"[pattern {i}]")
-        prefix = f"Pattern '{pid}'"
+    for i, r in enumerate(recognitions):
+        rid = r.get("id", f"[recognition {i}]")
+        prefix = f"Recognition '{rid}'"
 
         for field in ("id", "title", "explanation", "momentum", "evidence"):
-            if field not in p:
+            if field not in r:
                 errors.append(f"{prefix}: missing field '{field}'")
 
-        if pid in seen_ids:
+        if rid in seen_ids:
             errors.append(f"{prefix}: duplicate id")
-        seen_ids.add(pid)
+        seen_ids.add(rid)
 
-        momentum = p.get("momentum", "")
+        momentum = r.get("momentum", "")
         if momentum not in VALID_MOMENTUMS:
             errors.append(f"{prefix}: invalid momentum '{momentum}'")
 
-        explanation = p.get("explanation", "")
+        explanation = r.get("explanation", "")
         if len(explanation) < 20:
             errors.append(f"{prefix}: explanation too short")
 
-        evidence = p.get("evidence", [])
+        evidence = r.get("evidence", [])
         if not isinstance(evidence, list):
             errors.append(f"{prefix}: evidence must be a list")
             continue
@@ -114,8 +113,8 @@ def main():
     data = json.loads(DATA_PATH.read_text())
     errors = validate(data)
 
-    pattern_count = len(data.get("patterns", []))
-    evidence_count = sum(len(p.get("evidence", [])) for p in data.get("patterns", []))
+    recognition_count = len(data.get("recognitions", []))
+    evidence_count = sum(len(r.get("evidence", [])) for r in data.get("recognitions", []))
 
     if errors:
         print(f"VALIDATION FAILED — {len(errors)} error(s):\n", file=sys.stderr)
@@ -124,7 +123,7 @@ def main():
         sys.exit(1)
 
     print(f"OK  {DATA_PATH}")
-    print(f"    {pattern_count} pattern(s), {evidence_count} evidence item(s), all URLs present")
+    print(f"    {recognition_count} recognition(s), {evidence_count} evidence item(s), all URLs present")
 
 
 if __name__ == "__main__":
