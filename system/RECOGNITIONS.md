@@ -141,7 +141,7 @@ Recognitions are stored in `docs/patterns/data.json` under the `recognitions` ar
 }
 \`\`\`
 
-Maximum 6 recognitions per edition. Minimum 3 evidence items per recognition, maximum 4.
+Minimum 3 evidence items per recognition, maximum 4.
 
 ---
 

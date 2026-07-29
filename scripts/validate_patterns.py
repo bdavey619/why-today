@@ -36,9 +36,6 @@ def validate(data):
         errors.append("recognitions must be a non-empty list")
         return errors
 
-    if len(recognitions) > 6:
-        errors.append(f"Too many recognitions: {len(recognitions)} (maximum 6)")
-
     seen_ids = set()
 
     for i, r in enumerate(recognitions):
