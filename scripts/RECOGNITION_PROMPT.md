@@ -24,8 +24,10 @@ Then read the full cabinet (`docs/storylines/data.json`).
 
 Now ask: **Is this a daily refinement or a weekly reset?**
 
-- **Daily refinement:** Recognitions already exist for this week. New observations have arrived from today's collecting pass. Your task is to assess whether anything new materially changes what's already published.
-- **Weekly reset:** It is a new week, or the existing recognitions no longer reflect this week's material. Your task is to generate fresh recognitions from the full cabinet.
+**Check the weeks first.** Compare `patterns["week"]` to `storylines["week_start"]`. If they don't match, you are in a new week — the weekly reset path is required, not optional. Running `python3 scripts/validate_patterns.py` will surface this mismatch as a warning if you're unsure.
+
+- **Daily refinement:** `patterns["week"]` == `storylines["week_start"]`. Recognitions already exist for this week. New observations have arrived from today's collecting pass. Your task is to assess whether anything new materially changes what's already published.
+- **Weekly reset:** `patterns["week"]` ≠ `storylines["week_start"]`. You are in a new week. Your task is to generate fresh recognitions from the full cabinet — retire what no longer holds, carry forward what still does, add what the new week's material makes visible.
 
 Most days are daily refinements. Follow the path that matches.
 

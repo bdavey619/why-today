@@ -102,6 +102,29 @@ def validate(data):
     return errors
 
 
+STORYLINES_PATH = ROOT / "docs" / "storylines" / "data.json"
+
+
+def check_week_sync(patterns_data):
+    """Warn if patterns week doesn't match the current storylines week_start."""
+    if not STORYLINES_PATH.exists():
+        return
+    storylines = json.loads(STORYLINES_PATH.read_text())
+    patterns_week = patterns_data.get("week", "")
+    storylines_week = storylines.get("week_start", "")
+    if patterns_week and storylines_week and patterns_week != storylines_week:
+        print(
+            f"\n⚠️  Week mismatch: patterns.week={patterns_week},"
+            f" storylines.week_start={storylines_week}",
+            file=sys.stderr,
+        )
+        print(
+            "    Recognition pass needed — retire stale recognitions, add new ones,"
+            " update patterns[\"week\"] to match storylines[\"week_start\"].",
+            file=sys.stderr,
+        )
+
+
 def main():
     if not DATA_PATH.exists():
         print(f"ERROR: {DATA_PATH} not found", file=sys.stderr)
@@ -121,6 +144,7 @@ def main():
 
     print(f"OK  {DATA_PATH}")
     print(f"    {recognition_count} recognition(s), {evidence_count} evidence item(s), all URLs present")
+    check_week_sync(data)
 
 
 if __name__ == "__main__":
