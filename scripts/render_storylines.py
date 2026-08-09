@@ -32,6 +32,7 @@ STREAM_ORDER = [
     "human_rituals",
     "places",
     "curiosities",
+    "markets",
     "headlines",
 ]
 
@@ -40,6 +41,7 @@ STREAM_LABELS = {
     "human_rituals": "Human Rituals",
     "places": "Places",
     "curiosities": "Curiosities",
+    "markets": "Markets",
     "headlines": "Headlines",
 }
 
@@ -337,7 +339,7 @@ def render_page(data):
   <section class="hero">
     <p class="hero-eyebrow">Updated automatically</p>
     <h1 class="hero-headline">Cabinet of curiosities.</h1>
-    <p class="hero-description">Observations, questions, and threads from five streams: the natural world, human rituals, places, open curiosities, and headlines. Raw material for investigation &mdash; not finished editions.</p>
+    <p class="hero-description">Observations, questions, and threads from six streams: the natural world, human rituals, places, open curiosities, markets, and headlines. Raw material for investigation &mdash; not finished editions.</p>
   </section>
 
   <div class="storylines-meta-bar">
