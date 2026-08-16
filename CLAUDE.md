@@ -27,6 +27,12 @@ Cabinet storylines and recognitions should stay grounded in what surfaces from t
 
 **Prune-stale**: `render_storylines.py` removes any storyline with `last_seen` more than 3 days old (dormant entries are preserved). Every active storyline must be bumped at least every 3 days or it disappears on next render.
 
+**Source freshness**: `last_seen` and `url` are independent fields. Bumping a storyline refreshes its *timestamp* without touching its *source*, so a card can advertise freshness its link doesn't have — or worse, make claims the linked article predates.
+
+The rule: **the URL must support the newest sentence on the card.** If you bump a storyline with new facts, replace the source with wherever those facts came from. The bump and the re-source are one action, not two.
+
+Every active storyline carries a `source_date` (`YYYY-MM-DD`) — the publication date of its link. `validate_storylines.py` errors on a missing one and warns when it lags `last_seen` by more than 3 days. Entries whose link is a reference rather than a report — seasonal rituals, structural explainers — set `"source_evergreen": true` to opt out of the freshness check. Dormant entries are skipped.
+
 **Rollover**: `maybe_roll_over()` fires when `now - week_start >= 7 days`. It archives the entire cabinet (active + dormant) to `docs/storylines/archive/<week_start>.json` and returns an empty cabinet. Always check `week_start` before an unattended render.
 
 **Week sync**: `patterns["week"]` must equal `storylines["week_start"]`. `validate_patterns.py` warns if they diverge. Keep them in sync when extending the week or triggering a rollover.
@@ -42,10 +48,10 @@ Cabinet storylines and recognitions should stay grounded in what surfaces from t
 Every update session:
 
 1. Check `week_start` — is rollover imminent? If so, decide: extend the week or let it roll.
-2. Bump all storylines that are still live (anything with `last_seen` approaching 3 days needs a refresh or dormancy decision).
+2. Bump all storylines that are still live (anything with `last_seen` approaching 3 days needs a refresh or dormancy decision). Re-source as you bump — a new fact needs the link that carries it, and a new `source_date`.
 3. Run the recognition audit (see below).
 4. Run `scripts/render_storylines.py` and `scripts/render_patterns.py`.
-5. Run `scripts/validate_patterns.py` — resolve any warnings before committing.
+5. Run `scripts/validate_storylines.py` and `scripts/validate_patterns.py` — resolve any warnings before committing.
 6. Commit and push to `main`.
 
 ---
@@ -105,9 +111,10 @@ Move retired recognitions to `docs/patterns/archive/<recognition-id>.json` with 
 |---|---|
 | `scripts/render_storylines.py` | Renders cabinet HTML; prunes stale; handles rollover |
 | `scripts/render_patterns.py` | Renders recognitions HTML |
+| `scripts/validate_storylines.py` | Validates cabinet data; errors on missing URL/`source_date`, warns on source drift |
 | `scripts/validate_patterns.py` | Validates patterns data; warns on week mismatch, missing URLs, stale evidence |
 
-Run all three in sequence, resolve warnings, then commit.
+Run all four in sequence, resolve warnings, then commit.
 
 ---
 
