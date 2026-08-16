@@ -333,7 +333,10 @@ def render_page(data):
 
   <header class="masthead">
     <a href="../" class="publication-name">Why Today?</a>
-    <span class="masthead-tagline">A different question for today's conversation.</span>
+    <nav class="masthead-nav">
+      <a href="../patterns/" class="masthead-nav-link">Recognitions &rarr;</a>
+      <span class="masthead-tagline">A different question for today's conversation.</span>
+    </nav>
   </header>
 
   <section class="hero">

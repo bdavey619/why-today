@@ -287,6 +287,23 @@ body {
   letter-spacing: 0.04em;
 }
 
+.pub-nav {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+}
+
+.pub-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.pub-link:hover { text-decoration: underline; }
+
 /* ── LEDE ── */
 .lede {
   max-width: var(--max);
@@ -585,7 +602,10 @@ def render_page(data):
 
   <header class="masthead">
     <a href="../" class="pub-name">Why Today?</a>
-    <span class="pub-week">{html.escape(week_label)}</span>
+    <nav class="pub-nav">
+      <a href="../storylines/" class="pub-link">&larr; Cabinet of Curiosities</a>
+      <span class="pub-week">{html.escape(week_label)}</span>
+    </nav>
   </header>
 
   <section class="lede">
