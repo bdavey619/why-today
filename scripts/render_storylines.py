@@ -16,6 +16,7 @@ Writes on rollover: docs/storylines/archive/<week_start>.json
 
 import json
 import html
+import re
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -175,9 +176,11 @@ def render_card(s):
         title_html = ""
 
     # Editorial potential chip
+    # Show editorial potential only when it deviates from "high". When every
+    # card carries the same chip it is noise, not signal.
     potential = s.get("editorial_potential", "")
     potential_html = ""
-    if potential:
+    if potential and potential != "high":
         potential_html = f'<span class="storyline-potential potential-{html.escape(potential)}">{html.escape(potential)}</span> '
 
     # Status chip (show for non-default statuses)
@@ -206,7 +209,10 @@ def render_card(s):
         # Old-style headline card: show title — why_now inline
         main_description = f" &mdash; {html.escape(why_now)}"
 
-    season = s.get("season_or_time_context", "")
+    # The freshness line already shows the date, so drop a leading date
+    # prefix ("Aug 16, 2026 - ...") rather than printing it twice.
+    season = re.sub(r"^[A-Z][a-z]{2} \d{1,2}, \d{4}\s*[-\u2013\u2014]\s*", "",
+                    s.get("season_or_time_context", ""))
     season_html = ""
     if season:
         season_html = f' <span class="curiosity-season">{html.escape(season)}</span>'
@@ -216,11 +222,14 @@ def render_card(s):
     if location:
         location_html = f' <span class="curiosity-location">{html.escape(location)}</span>'
 
+    meta_bits = f"{season_html}{location_html}".strip()
+    meta_html = f'\n        <p class="storyline-meta">{meta_bits}</p>' if meta_bits else ""
+
     return f"""      <li class="storyline-item">
         <div class="storyline-row">
-          <span class="storyline-main">{status_html}{potential_html}{title_html}{main_description}{season_html}{location_html}</span>
+          <span class="storyline-main">{status_html}{potential_html}{title_html}{main_description}</span>
           <span class="storyline-freshness">{freshness}</span>
-        </div>{observation_html}{question_html}{history_html}
+        </div>{meta_html}{observation_html}{question_html}{history_html}
       </li>"""
 
 
