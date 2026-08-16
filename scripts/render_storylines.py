@@ -141,13 +141,27 @@ def render_card(s):
     if times > 1:
         freshness += f" &middot; {times}&times;"
 
+    # History renders as a disclosure, not a title tooltip — touch devices
+    # have no hover, so a tooltip hides this from every phone reader.
     history = s.get("history", [])
-    freshness_attrs = ""
+    history_html = ""
     if history:
-        tooltip = "; ".join(
-            f"{parse_dt(h['date']).strftime('%b %-d')}: {h['note']}" for h in history[-MAX_HISTORY:]
+        entries = "\n".join(
+            f'          <li class="history-item">'
+            f'<span class="history-date">{parse_dt(h["date"]).strftime("%b %-d")}</span>'
+            f'{html.escape(h["note"])}</li>'
+            for h in history[-MAX_HISTORY:]
         )
-        freshness_attrs = f' title="{html.escape(tooltip)}"'
+        n = len(history[-MAX_HISTORY:])
+        history_html = f"""
+        <details class="history-details">
+          <summary class="history-toggle">
+            <span class="history-toggle-label">{n} update{'s' if n != 1 else ''}</span>
+          </summary>
+          <ul class="history-list">
+{entries}
+          </ul>
+        </details>"""
         freshness += " &middot; evolving"
 
     # Title / moment link
@@ -205,8 +219,8 @@ def render_card(s):
     return f"""      <li class="storyline-item">
         <div class="storyline-row">
           <span class="storyline-main">{status_html}{potential_html}{title_html}{main_description}{season_html}{location_html}</span>
-          <span class="storyline-freshness"{freshness_attrs}>{freshness}</span>
-        </div>{observation_html}{question_html}
+          <span class="storyline-freshness">{freshness}</span>
+        </div>{observation_html}{question_html}{history_html}
       </li>"""
 
 
