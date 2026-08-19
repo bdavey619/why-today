@@ -6,6 +6,16 @@ Organizes entries by five collecting streams (Natural World, Human Rituals,
 Places, Curiosities, Headlines). Within the Headlines stream, entries are
 grouped by their existing category field for backward compatibility.
 
+Two fields carry a card's text and they do different jobs. `observation` is the
+standing description — what this thing is, why it is worth watching — and it
+should read the same next week as it does today. `history` is the dated record
+of what has actually changed. Keeping developments out of `observation` is what
+stops a card from growing a paragraph a session.
+
+A card's change state is derived, never flagged by hand: `cycle_start` marks the
+start of the current update session, and a card is new if it was first seen after
+it, updated if its newest history note lands after it, and held otherwise.
+
 Handles both old-style entries (category field only, no stream) and new-style
 entries (stream field present). Old-style entries are treated as stream=headlines.
 
@@ -76,6 +86,7 @@ def load_data():
     if not DATA_PATH.exists():
         return {
             "week_start": now_utc().date().isoformat(),
+            "cycle_start": now_utc().isoformat(),
             "last_updated": now_utc().isoformat(),
             "storylines": [],
         }
@@ -91,6 +102,7 @@ def maybe_roll_over(data):
         archive_path.write_text(json.dumps(data, indent=2))
         return {
             "week_start": now_utc().date().isoformat(),
+            "cycle_start": now_utc().isoformat(),
             "last_updated": now_utc().isoformat(),
             "storylines": [],
         }
@@ -121,6 +133,41 @@ def fmt_date(dt):
 
 MAX_HISTORY = 5
 
+CHANGE_LABELS = {"new": "new", "updated": "updated"}
+
+
+def get_cycle_start(data):
+    """Start of the current update session, or None if the data predates the field."""
+    cs = data.get("cycle_start")
+    return parse_dt(cs) if cs else None
+
+
+def latest_note(s):
+    """Newest history entry by date, or None. History need not be pre-sorted."""
+    history = s.get("history") or []
+    if not history:
+        return None
+    return max(history, key=lambda h: parse_dt(h["date"]))
+
+
+def change_state(s, cycle_start):
+    """new | updated | "" — derived from timestamps, never set by hand.
+
+    A card is new if it was first collected in this cycle, updated if its newest
+    change note lands in this cycle, and neither if it was merely re-confirmed.
+    That last case is the one worth being able to see: a bump with no note is a
+    card that is riding on its own history.
+    """
+    if cycle_start is None:
+        return ""
+    if parse_dt(s["first_seen"]) >= cycle_start:
+        return "new"
+    note = latest_note(s)
+    if note and parse_dt(note["date"]) >= cycle_start:
+        return "updated"
+    return ""
+
+
 STATUS_LABELS = {
     "captured": "captured",
     "curious": "curious",
@@ -132,7 +179,7 @@ STATUS_LABELS = {
 }
 
 
-def render_card(s):
+def render_card(s, cycle_start=None):
     first = parse_dt(s["first_seen"])
     last = parse_dt(s["last_seen"])
     freshness = fmt_date(first)
@@ -142,28 +189,45 @@ def render_card(s):
     if times > 1:
         freshness += f" &middot; {times}&times;"
 
-    # History renders as a disclosure, not a title tooltip — touch devices
-    # have no hover, so a tooltip hides this from every phone reader.
-    history = s.get("history", [])
+    state = change_state(s, cycle_start)
+    change_html = ""
+    if state:
+        change_html = (
+            f'<span class="curiosity-change change-{state}">'
+            f'{CHANGE_LABELS[state]}</span> '
+        )
+
+    # The newest change note is the answer to "what changed?", so it renders in
+    # the open, above the fold of any disclosure. Only the older notes fold away.
+    # (History renders as a disclosure, not a title tooltip — touch devices have
+    # no hover, so a tooltip hides this from every phone reader.)
+    history = sorted(s.get("history") or [], key=lambda h: parse_dt(h["date"]))
     history_html = ""
     if history:
-        entries = "\n".join(
-            f'          <li class="history-item">'
-            f'<span class="history-date">{parse_dt(h["date"]).strftime("%b %-d")}</span>'
-            f'{html.escape(h["note"])}</li>'
-            for h in history[-MAX_HISTORY:]
-        )
-        n = len(history[-MAX_HISTORY:])
+        newest = history[-1]
+        earlier = history[:-1][-(MAX_HISTORY - 1):]
         history_html = f"""
+        <p class="curiosity-latest{' is-current' if state == 'updated' else ''}">
+          <span class="latest-date">{parse_dt(newest["date"]).strftime("%b %-d")}</span>
+          {html.escape(newest["note"])}
+        </p>"""
+        if earlier:
+            entries = "\n".join(
+                f'          <li class="history-item">'
+                f'<span class="history-date">{parse_dt(h["date"]).strftime("%b %-d")}</span>'
+                f'{html.escape(h["note"])}</li>'
+                for h in reversed(earlier)
+            )
+            n = len(earlier)
+            history_html += f"""
         <details class="history-details">
           <summary class="history-toggle">
-            <span class="history-toggle-label">{n} update{'s' if n != 1 else ''}</span>
+            <span class="history-toggle-label">{n} earlier update{'s' if n != 1 else ''}</span>
           </summary>
           <ul class="history-list">
 {entries}
           </ul>
         </details>"""
-        freshness += " &middot; evolving"
 
     # Title / moment link
     url = s.get("url", "")
@@ -227,7 +291,7 @@ def render_card(s):
 
     return f"""      <li class="storyline-item">
         <div class="storyline-row">
-          <span class="storyline-main">{status_html}{potential_html}{title_html}{main_description}</span>
+          <span class="storyline-main">{change_html}{status_html}{potential_html}{title_html}{main_description}</span>
           <span class="storyline-freshness">{freshness}</span>
         </div>{meta_html}{observation_html}{question_html}{history_html}
       </li>"""
@@ -243,7 +307,7 @@ def sort_items(items):
     )
 
 
-def render_stream_section(stream, items):
+def render_stream_section(stream, items, cycle_start=None):
     """Render one stream section. For headlines, group by category."""
     if not items:
         return ""
@@ -262,7 +326,7 @@ def render_stream_section(stream, items):
             cat_items = sort_items(by_category.get(cat, []))
             if not cat_items:
                 continue
-            cards = "\n".join(render_card(s) for s in cat_items)
+            cards = "\n".join(render_card(s, cycle_start) for s in cat_items)
             inner += f"""      <div class="storyline-category">
         <p class="storyline-category-label">{html.escape(cat)}</p>
         <ul class="storyline-list">
@@ -279,7 +343,7 @@ def render_stream_section(stream, items):
 """
     else:
         sorted_items = sort_items(items)
-        cards = "\n".join(render_card(s) for s in sorted_items)
+        cards = "\n".join(render_card(s, cycle_start) for s in sorted_items)
         return f"""  <div class="stream-section" data-stream="{html.escape(stream)}">
     <p class="stream-label">{html.escape(label)}</p>
     <ul class="storyline-list">
@@ -289,12 +353,12 @@ def render_stream_section(stream, items):
 """
 
 
-def render_dormant_section(items):
+def render_dormant_section(items, cycle_start=None):
     """Render dormant curiosities in a separate collapsed section."""
     if not items:
         return ""
     sorted_items = sort_items(items)
-    cards = "\n".join(render_card(s) for s in sorted_items)
+    cards = "\n".join(render_card(s, cycle_start) for s in sorted_items)
     return f"""  <div class="stream-section stream-dormant">
     <p class="stream-label">Dormant</p>
     <p class="stream-dormant-note">Set aside — may resurface in a different season or context.</p>
@@ -309,6 +373,7 @@ def render_page(data):
     week_start = datetime.fromisoformat(data["week_start"]).replace(tzinfo=timezone.utc)
     week_end = week_start + timedelta(days=WEEK_LENGTH_DAYS - 1)
     updated = parse_dt(data["last_updated"])
+    cycle_start = get_cycle_start(data)
 
     # Separate dormant from active
     active = [s for s in data["storylines"] if s.get("status") != "dormant"]
@@ -321,16 +386,30 @@ def render_page(data):
         by_stream.setdefault(stream, []).append(s)
 
     sections = "".join(
-        render_stream_section(stream, by_stream.get(stream, []))
+        render_stream_section(stream, by_stream.get(stream, []), cycle_start)
         for stream in STREAM_ORDER
     )
-    dormant_section = render_dormant_section(dormant)
+    dormant_section = render_dormant_section(dormant, cycle_start)
 
     total_active = len(active)
     total_dormant = len(dormant)
     count_text = f"{total_active} active"
     if total_dormant:
         count_text += f", {total_dormant} dormant"
+
+    # What this session did, in the header. A cycle that collected nothing new
+    # should be visible from the top of the page rather than inferred by reading
+    # eleven date ranges.
+    states = [change_state(s, cycle_start) for s in active]
+    n_new = states.count("new")
+    n_updated = states.count("updated")
+    n_held = len(states) - n_new - n_updated
+    cycle_text = ""
+    if cycle_start is not None:
+        bits = [f"{n_new} new", f"{n_updated} updated"]
+        if n_held:
+            bits.append(f"{n_held} held")
+        cycle_text = "This update: " + ", ".join(bits)
 
     # Stream count summary
     stream_counts = []
@@ -373,6 +452,8 @@ def render_page(data):
     <span>{count_text}</span>
     <span>Last updated {updated.strftime('%b %-d, %Y %H:%M UTC')}</span>
   </div>
+
+  {f'<div class="storylines-cycle-bar">{cycle_text}</div>' if cycle_text else ''}
 
   {f'<div class="stream-summary">{stream_summary}</div>' if stream_summary else ''}
 
