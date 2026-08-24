@@ -23,6 +23,30 @@ Cabinet storylines and recognitions should stay grounded in what surfaces from t
 
 ---
 
+## Coverage & Variety Discipline
+
+**The failure mode**: a reader who checks the cabinet every session sees the same handful of threads restated with new numbers. That happens when research each session chases whatever is loudest — usually one macro-narrative (trade policy, the Fed, one regional conflict) — instead of actively covering ground the cabinet hasn't touched. A cabinet that's internally consistent and well-sourced can still be a bad news source if it's narrow. Both matter.
+
+**Before researching, check what's over-represented.** If 3 or more active storylines already belong to the same macro-narrative cluster (e.g. "this administration's trade/foreign policy and how markets are pricing it"), that cluster is full for this session — bump what's already there if it moved, but don't add a new storyline to it. Spend the session's search budget on beats the cabinet is thin on instead.
+
+**Rotate across a beat checklist, don't wait for beats to surface on their own.** Each session, before finalizing, scan for open ground in:
+- Regions barely or never touched this week (check: Europe beyond whatever's currently active, East/South Asia, Africa, Latin America, the Pacific)
+- US domestic politics and policy *outside* trade/foreign policy (courts, states, elections, regulation)
+- Science and research (not just health/pharma)
+- Culture, arts, and entertainment
+- Sports — actually search ESPN's headlines every session, even though it won't always produce a storyline. A core source that's never checked isn't a source.
+- Technology and business *outside* whatever market-moving story is dominant (Fed watch, one company's earnings)
+
+Not every beat needs a storyline every session — but not searching a beat at all, session after session, is how the cabinet narrows without anyone deciding it should.
+
+**`human_rituals` needs a dedicated search, not leftovers.** Nothing in the other five streams naturally drifts into it. If it's been empty for more than a session or two, that's a sign the research pass isn't looking for it — actively search for seasonal, cultural, or ritual moments (observances, traditions, civic rhythms) rather than leaving the stream to fill itself.
+
+**Stream imbalance is a signal, not just a rendering detail.** If a stream has been empty, or one stream has 3+ entries while another has zero, across two or more consecutive sessions, treat that as a research-gap problem to fix that session — not something to note and move past.
+
+**Sourcing discipline extends to URL specificity.** A source's homepage or section front page (e.g. `reuters.com/world/asia-pacific/`) is not a valid source for a specific claim, even though it has a plausible-looking domain and can carry a `source_date`. The link must resolve to the actual article that reports the fact on the card. If you can't find a specific article for a claim, that's a sign the claim needs a different source or the storyline needs to go dormant — not a reason to link the section front page.
+
+---
+
 ## Cabinet of Curiosities — Key Rules
 
 **Observation vs. history — the split that keeps cards readable**: a card has two text fields and they do different jobs.
@@ -68,7 +92,7 @@ Every update session:
 
 1. Set `cycle_start` to the previous session's `last_updated` before you change anything else. This is what lets the page distinguish what you added from what you merely bumped.
 2. Check `week_start` — is rollover imminent? If so, decide: extend the week or let it roll.
-3. **Collect before you bump.** Go to the daily sources and find what is actually new. A session that only refreshes timestamps on cards it already had is not an update — it produces a page that says "updated" and shows the reader nothing. Aim for at least one genuinely new storyline per session; if the feeds honestly produced none, retire or dormant something instead of leaving the cabinet static.
+3. **Collect before you bump.** Go to the daily sources and find what is actually new. A session that only refreshes timestamps on cards it already had is not an update — it produces a page that says "updated" and shows the reader nothing. Aim for at least one genuinely new storyline per session; if the feeds honestly produced none, retire or dormant something instead of leaving the cabinet static. Before searching, apply **Coverage & Variety Discipline** (above): check which macro-narrative clusters and streams are already over-represented, and point this session's research at open ground instead of the loudest story.
 4. Bump the storylines that are still live (anything with `last_seen` approaching 3 days needs a refresh or dormancy decision). For each one that actually moved, **add a history note** — do not extend `observation`. Re-source as you bump: a new fact needs the link that carries it, and a new `source_date`.
 5. Run the recognition audit (see below).
 6. Set `last_updated` to now.
