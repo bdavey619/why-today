@@ -120,10 +120,17 @@ def prune_stale(data):
 
 
 def cap_history(data):
-    """Bound history growth in the data file itself, not just at render time."""
+    """Bound history growth in the data file itself, not just at render time.
+
+    History is stored newest-first, but sort explicitly rather than trusting
+    that convention — a naive positional slice here would silently discard
+    the newest note instead of the oldest whenever a storyline passed 5.
+    """
     for s in data["storylines"]:
         if s.get("history"):
-            s["history"] = s["history"][-5:]
+            s["history"] = sorted(
+                s["history"], key=lambda h: parse_dt(h["date"]), reverse=True
+            )[:MAX_HISTORY]
     return data
 
 
